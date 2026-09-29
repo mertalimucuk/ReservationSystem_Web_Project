@@ -1,0 +1,358 @@
+﻿@page
+@model ReservationSystem.Pages.InstructorPanelModel
+@{
+    ViewData["Title"] = "Instructor Panel";
+}
+
+@* AI PROMPT:"Design a Razor Page UI for instructors to view and manage their class reservations. Include form validation, status badges, calendar event loading via AJAX, and a modal for submitting change requests."*@
+@*AI PROMPOT:"Create a Razor Page for an instructor panel that includes a form to submit class reservations, a weekly reservation table, and a calendar view using FullCalendar. Include modal for modification requests and Bootstrap styling."*@
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h2 class="mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>Instructor Panel</h2>
+    @if (!string.IsNullOrEmpty(Model.UserName)) // UserName boş değilse göster
+    {
+        <span class="text-muted">Welcome, @Model.UserName!</span>
+    }
+</div>
+<hr />
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light"> 
+        <h4 class="mb-0"><i class="fas fa-plus-square me-2"></i>Create New Reservation</h4>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-page-handler="">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label asp-for="ReservationInput.ClassId" class="form-label">Classroom</label>
+                    <select asp-for="ReservationInput.ClassId" class="form-select" asp-items="Model.ClassOptions">
+                        <option value="">-- Select Classroom --</option>
+                    </select>
+                    <span asp-validation-for="ReservationInput.ClassId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="ReservationInput.Date" class="form-label">Date</label>
+                    <input type="date" asp-for="ReservationInput.Date" class="form-control" />
+                    <span asp-validation-for="ReservationInput.Date" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label asp-for="ReservationInput.TimeSlot" class="form-label">Time Slot</label>
+                    <select asp-for="ReservationInput.TimeSlot" class="form-select" asp-items="Model.TimeSlotOptions">
+                        
+                    </select>
+                    <span asp-validation-for="ReservationInput.TimeSlot" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" class="form-check-input" id="applyToTerm" asp-for="ApplyToTerm">
+                <label class="form-check-label" for="applyToTerm">Repeat for the selected day of the week throughout the active term</label>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-plus me-2"></i>Submit Reservation Request</button>
+        </form>
+    </div>
+</div>
+
+
+@if (TempData["Message"] != null && TempData["MessageType"] != null)
+{
+    <div class="alert alert-@TempData["MessageType"] alert-dismissible fade show mt-3" role="alert">
+        @Html.Raw(TempData["Message"]?.ToString()?.ReplaceLineEndings("<br />"))
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+{
+    
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <h5 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i>Please correct the following errors:</h5>
+        <div asp-validation-summary="All" class="mb-0"></div> @* Tüm hataları listeler *@
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+        <h4 class="mb-0"><i class="fas fa-calendar-alt me-2"></i>My Calendar View</h4>
+    </div>
+    <div class="card-body">
+        <div id='instructorCalendar' class="p-0"></div>
+    </div>
+</div>
+
+
+
+<div class="card shadow-sm mb-4"> 
+    <div class="card-header bg-light d-flex flex-wrap justify-content-between align-items-center"> 
+        <h4 class="mb-2 mb-md-0 me-md-3"><i class="fas fa-list-alt me-2"></i>My Reservations</h4> 
+        <form method="get" class="row row-cols-lg-auto g-2 align-items-center"> 
+            <div class="col-12 col-lg-auto">
+                <label for="selectedWeek" class="visually-hidden">Select Week:</label> 
+            </div>
+            <div class="col-12 col-lg-auto">
+                <select name="SelectedWeek" id="selectedWeek" asp-for="SelectedWeek" class="form-select form-select-sm" onchange="this.form.submit()" aria-label="Select week to display reservations">
+                   
+                    @if (Model.WeekOptions == null || !Model.WeekOptions.Any())
+                    {
+                        <option value="">-- No weeks available --</option>
+                    }
+                    else
+                    {
+                        @foreach (var week in Model.WeekOptions)
+                        {
+                            <option value="@week" selected="@(Model.SelectedWeek == week)">@week</option>
+                        }
+                    }
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Class</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.WeeklyReservations != null && Model.WeeklyReservations.Any())
+                    {
+                        @foreach (var r in Model.WeeklyReservations.OrderBy(res => res.Date).ThenBy(res => res.TimeSlot))
+                        {
+                            <tr>
+                                <td>@(r.Class?.Name ?? "N/A")</td>
+                                <td>@r.Date.ToString("dd.MM.yyyy")</td>
+                                <td>@r.TimeSlot</td>
+                                <td>
+                                    @if (r.Status == "Approved") { <span class="badge text-bg-success">Approved</span> }
+                                    else if (r.Status == "Rejected") { <span class="badge text-bg-danger">Rejected</span> }
+                                    else if (r.Status == "Conflict") { <span class="badge text-bg-danger" title="Conflict detected. Please contact admin.">Conflict</span> }
+                                    else if (r.Status == "Cancellation Requested") { <span class="badge text-bg-info">Cancellation Requested</span> }
+                                    else if (r.Status == "ModificationRequested") { <span class="badge text-bg-primary">Modification Requested</span> }
+                                    else { <span class="badge text-bg-warning">@(r.Status ?? "Pending")</span> }
+                                </td>
+                                <td>
+                                    @if ((r.Status == "Pending" || r.Status == "Approved") &&
+                                         Model.ActiveTermStartDate.HasValue && Model.ActiveTermEndDate.HasValue &&
+                                         r.Date.Date >= Model.ActiveTermStartDate.Value.Date && r.Date.Date <= Model.ActiveTermEndDate.Value.Date)
+                                    {
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Reservation Actions">
+                                            <button type="button" class="btn btn-outline-info"
+                                                    data-bs-toggle="modal" data-bs-target="#modificationModal"
+                                                    data-reservation-id="@r.Id"
+                                                    data-current-class-id="@r.ClassId"
+                                                    data-current-class-name="@(r.Class?.Name ?? "N/A")"
+                                                    data-current-date="@r.Date.ToString("yyyy-MM-dd")"
+                                                    data-current-timeslot="@r.TimeSlot"
+                                                    title="Request Modification">
+                                                <i class="fas fa-edit"></i> Modify
+                                            </button>
+
+                                            <form method="post" asp-page-handler="RequestCancellation" class="d-inline">
+                                                <input type="hidden" name="reservationId" value="@r.Id" />
+                                                <button type="submit" class="btn btn-outline-warning"
+                                                        onclick="return confirm('Are you sure you want to request cancellation for reservation ID @r.Id: @(r.Class?.Name) on @r.Date.ToString("dd.MM.yyyy") @r.TimeSlot?');"
+                                                        title="Request Cancellation">
+                                                    <i class="fas fa-times-circle"></i> Cancel
+                                                </button>
+                                            </form>
+                                        </div>
+                                    }
+                                    else if (r.Status == "Cancellation Requested" || r.Status == "ModificationRequested")
+                                    {
+                                        <span class="text-muted fst-italic">Pending Admin Approval</span>
+                                        @if (r.Status == "ModificationRequested" && !string.IsNullOrEmpty(r.ModificationRequestDetails))
+                                        {
+                                            <button type="button" class="btn btn-link btn-sm p-0 ms-1"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    data-bs-html="true" title="@r.ModificationRequestDetails?.ReplaceLineEndings("<br />")">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No actions</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td colspan="5" class="text-center text-muted py-3">@(string.IsNullOrEmpty(Model.SelectedWeek) || Model.SelectedWeek == "-- All My Reservations --" ? "You have no reservations." : "No reservations found for the selected week.")</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@* Değişiklik Talebi Modalı *@
+<div class="modal fade" id="modificationModal" tabindex="-1" aria-labelledby="modificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> 
+        <div class="modal-content">
+            <form method="post" asp-page-handler="RequestModification">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="modificationModalLabel"><i class="fas fa-exchange-alt me-2"></i>Request Reservation Modification</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <input type="hidden" asp-for="ModificationReservationId" id="modalModificationReservationId" />
+                    
+                    <p><strong>Current Reservation:</strong> <span id="modalCurrentReservationDetails" class="fw-normal"></span></p>
+                    <hr>
+                    <p class="fw-bold">Enter your requested changes below (only fill fields you want to change):</p>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="NewRequestedClassId" class="form-label">New Classroom (Optional)</label>
+                            <select asp-for="NewRequestedClassId" id="modalNewRequestedClassId" class="form-select" asp-items="Model.ClassOptions">
+                                <option value="">-- No Change --</option>
+                            </select>
+                            <span asp-validation-for="NewRequestedClassId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="NewRequestedDate" class="form-label">New Date (Optional)</label>
+                            <input asp-for="NewRequestedDate" id="modalNewRequestedDate" type="date" class="form-control" />
+                            <span asp-validation-for="NewRequestedDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="NewRequestedTimeSlot" class="form-label">New Time Slot (Optional)</label>
+                            <select asp-for="NewRequestedTimeSlot" id="modalNewRequestedTimeSlot" class="form-select" asp-items="Model.TimeSlotOptions">
+                                <option value="">-- No Change --</option>
+                            </select>
+                            <span asp-validation-for="NewRequestedTimeSlot" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="ModificationRequestNotes" class="form-label">Additional Notes / Reason for Change <small class="text-muted">(Required if no other changes are made)</small></label>
+                        <textarea asp-for="ModificationRequestNotes" id="modalModificationRequestNotes" class="form-control" rows="3" placeholder="Please provide any additional details or reasons for your request..."></textarea>
+                        <span asp-validation-for="ModificationRequestNotes" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Send Modification Request</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @* <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script> *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var calendarEl = document.getElementById("instructorCalendar");
+            if (calendarEl) {
+                var calendar = new FullCalendar.Calendar(calendarEl, { 
+                    themeSystem: "bootstrap5", 
+                    initialView: "dayGridMonth",
+                    height: 'auto', 
+                    contentHeight: 600, 
+                    headerToolbar: { 
+                        left: "prev,next today", 
+                        center: "title", 
+                        right: "dayGridMonth,timeGridWeek,timeGridDay"
+                    },
+                    slotMinTime: "10:00:00",
+                    slotMaxTime: "18:00:00",
+                    slotDuration: "01:00:00",
+                    allDaySlot: false,
+                    nowIndicator: true,
+                    
+                    events: function (info, successCallback, failureCallback) {
+                        fetch(`/InstructorPanel?handler=MonthlyReservations&start=${encodeURIComponent(info.startStr)}&end=${encodeURIComponent(info.endStr)}`)
+                            .then(response => { 
+                                if (!response.ok) { 
+                                    console.error("Calendar fetch error status:", response.status);
+                                    failureCallback(new Error(`HTTP error! status: ${response.status}`));
+                                    return Promise.reject(`HTTP error! status: ${response.status}`);
+                                } 
+                                return response.json(); 
+                            })
+                            .then(data => { 
+                                if(data.error) { 
+                                    console.error("Calendar data error:", data.error);
+                                    failureCallback(new Error(data.error));
+                                } else { 
+                                    successCallback(data);
+                                }
+                            })
+                            .catch(error => { 
+                                console.error("Calendar fetch/processing error:", error);
+                                failureCallback(error); 
+                            });
+                    },
+                    eventDidMount: function(info) {
+                        if (info.event.extendedProps && info.event.extendedProps.description) {
+                            var tooltip = new bootstrap.Tooltip(info.el, {
+                                title: info.event.extendedProps.description.replace(/\n/g, '<br>'),
+                                html: true,
+                                placement: 'top',
+                                trigger: 'hover',
+                                container: 'body' 
+                            });
+                        }
+                    }
+                });
+                calendar.render();
+            }
+
+            var modificationModalElement = document.getElementById('modificationModal');
+            if (modificationModalElement) {
+                modificationModalElement.addEventListener('show.bs.modal', function (event) {
+                    var button = event.relatedTarget; 
+                    var reservationId = button.getAttribute('data-reservation-id');
+                    
+                    var currentClassName = button.getAttribute('data-current-class-name');
+                    var currentDate = button.getAttribute('data-current-date');
+                    var currentTimeSlot = button.getAttribute('data-current-timeslot');
+
+                    var modalReservationIdInputEl = modificationModalElement.querySelector('#modalModificationReservationId');
+                    var modalCurrentDetailsEl = modificationModalElement.querySelector('#modalCurrentReservationDetails');
+                    
+                    var modalNewClassIdSelect = modificationModalElement.querySelector('#modalNewRequestedClassId');
+                    var modalNewDateInput = modificationModalElement.querySelector('#modalNewRequestedDate');
+                    var modalNewTimeSlotSelect = modificationModalElement.querySelector('#modalNewRequestedTimeSlot');
+                    var modalNotesTextarea = modificationModalElement.querySelector('#modalModificationRequestNotes');
+
+                    if (modalReservationIdInputEl) modalReservationIdInputEl.value = reservationId;
+                    
+                    if (modalCurrentDetailsEl) {
+                        let formattedDate = "";
+                        if (currentDate) {
+                            try {
+                                const [year, month, day] = currentDate.split('-');
+                                formattedDate = `${day}.${month}.${year}`;
+                            } catch (e) {
+                                formattedDate = currentDate; 
+                            }
+                        }
+                        modalCurrentDetailsEl.textContent = `Class: ${currentClassName}, Date: ${formattedDate}, Time: ${currentTimeSlot}`;
+                    }
+                    
+                    if (modalNewClassIdSelect) modalNewClassIdSelect.value = ""; 
+                    if (modalNewDateInput) modalNewDateInput.value = "";     
+                    if (modalNewTimeSlotSelect) modalNewTimeSlotSelect.value = ""; 
+                    if (modalNotesTextarea) modalNotesTextarea.value = ''; 
+                });
+            }
+
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, { html: true }) 
+            })
+        });
+    </script>
+}

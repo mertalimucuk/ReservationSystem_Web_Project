@@ -1,0 +1,984 @@
+[2025-05-13 01:27:20] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 01:27:35] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 01:27:43] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 01:27:47] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 01:36:53] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 01:37:14] User=Instructor User | Action=SubmitReservation | Status=Success
+[2025-05-13 01:37:25] User=Instructor User | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-13 01:37:29] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 01:37:33] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 01:37:49] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=5
+[2025-05-13 01:38:01] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 01:38:07] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 01:38:16] User=Instructor User | Action=SubmitReservation | Status=Failed: Public holiday (Atatürk’ü Anma, Gençlik ve Spor Bayramı)
+[2025-05-13 01:38:29] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 01:38:34] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 12:57:52] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 12:58:11] User=Instructor User | Action=SubmitReservation | Status=Failed: Weekend
+[2025-05-13 12:58:24] User=Instructor User | Action=SubmitReservation | Status=Success
+[2025-05-13 12:58:26] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 13:03:34] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:03:48] User=Test Instructor | Action=SubmitReservation | Status=Success
+[2025-05-13 13:03:51] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 13:04:01] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:04:07] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=6
+[2025-05-13 13:04:12] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=7
+[2025-05-13 13:04:49] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 13:05:00] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:05:12] User=Test Instructor | Action=SubmitReservation | Status=Success
+[2025-05-13 13:05:26] User=Test Instructor | Action=SubmitReservation | Status=Failed: Public holiday (Ulusal Egemenlik ve Çocuk Bayramı)
+[2025-05-13 13:05:30] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 13:05:35] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:05:39] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=8
+[2025-05-13 13:19:05] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:19:16] User=Instructor User | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-13 13:19:20] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 13:19:30] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:20:45] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 13:20:53] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 13:20:59] User=Test Instructor | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-13 13:21:02] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 13:21:44] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 14:46:20] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 14:47:24] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 15:48:14] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 15:48:19] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 15:49:04] User=admin@test.com | Action=LoginAttempt | Status=Failed: Invalid password
+[2025-05-13 15:58:10] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 15:58:14] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 15:58:18] User=admin@test.com | Action=LoginAttempt | Status=Failed: Invalid password
+[2025-05-13 17:02:32] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 17:02:40] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 17:11:50] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 17:11:53] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 17:12:05] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 17:13:02] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 17:15:19] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 17:15:29] User=Test Instructor | Action=SubmitReservation | Status=Failed: Public holiday (Atatürk’ü Anma, Gençlik ve Spor Bayramı)
+[2025-05-13 17:16:56] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 23:48:22] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:48:35] User=Test Instructor | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-13 23:49:01] User=Test Instructor | Action=SubmitReservation | Status=Success
+[2025-05-13 23:49:03] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 23:49:08] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:49:12] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=9
+[2025-05-13 23:49:14] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=9
+[2025-05-13 23:50:51] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 23:50:56] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:51:05] User=Test Instructor | Action=SubmitReservation | Status=Failed: Weekend
+[2025-05-13 23:51:10] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-13 23:51:19] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:52:13] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:52:24] User=Instructor User | Action=SendFeedback | Status=Success | ClassId=5 | Rating=5
+[2025-05-13 23:52:26] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 23:52:35] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:52:48] User=Admin User | Action=Logout | Status=Success
+[2025-05-13 23:52:56] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-13 23:53:07] User=Instructor User | Action=SendFeedback | Status=Success | ClassId=5 | Rating=3
+[2025-05-13 23:53:09] User=Instructor User | Action=Logout | Status=Success
+[2025-05-13 23:53:27] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 13:25:10] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-14 13:25:23] User=Test Instructor | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-14 13:26:08] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-14 13:54:20] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 13:57:43] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 13:57:48] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 14:13:08] User=Unknown | Action=Logout | Status=Success
+[2025-05-14 14:23:37] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 14:26:02] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 14:50:39] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 14:50:43] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 14:56:01] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 14:56:28] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 14:56:33] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 16:59:03] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 17:34:54] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 17:36:57] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 17:52:34] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:14:16] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:14:29] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:19:29] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:19:38] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 19:19:44] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:20:35] User=Instructor User | Action=SubmitReservation | Status=Failed: Out of term
+[2025-05-14 19:20:39] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 19:20:44] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:20:56] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 19:21:02] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:21:06] User=Instructor User | Action=SubmitReservation | Status=Failed: Public holiday (Yılbaşı)
+[2025-05-14 19:23:59] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:24:46] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:30:46] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:30:58] User=Instructor User | Action=SubmitReservation | Status=Success | ClassId=3, Date=2025-01-23, TimeSlot=16:00–17:00
+[2025-05-14 19:31:30] User=Instructor User | Action=SubmitReservation | Status=Success | ClassId=5, Date=2025-02-20, TimeSlot=10:00–11:00
+[2025-05-14 19:31:39] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 19:31:45] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:31:49] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=5
+[2025-05-14 19:31:53] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=6
+[2025-05-14 19:31:59] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 19:32:09] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:32:17] User=Test Instructor | Action=SubmitReservation | Status=Warning: Reservation attempt on public holiday (Yılbaşı) for 2025-01-01.
+[2025-05-14 19:32:19] User=Test Instructor | Action=SubmitReservation | Status=Success | ClassId=3, Date=2025-01-01, TimeSlot=13:00–14:00
+[2025-05-14 19:32:40] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-14 19:32:51] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:33:01] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=7
+[2025-05-14 19:33:19] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 19:33:27] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:33:45] User=Instructor User | Action=SubmitReservation | Status=Success | ClassId=5, Date=2025-01-23, TimeSlot=16:00–17:00
+[2025-05-14 19:37:32] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:58:20] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:58:31] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=8
+[2025-05-14 19:58:32] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=8
+[2025-05-14 19:58:33] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=8
+[2025-05-14 19:58:40] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 19:58:47] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 19:58:57] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-01-03, TimeSlot=15:00–16:00
+[2025-05-14 19:59:05] User=Instructor User | Action=SubmitReservation | Status=Auto-Rejected: Reservation attempt on public holiday (Yılbaşı) for 2025-01-01.
+[2025-05-14 19:59:07] User=Instructor User | Action=SubmitReservationAutoReject | Status=Success (Auto-Rejected) | ClassId=3, Date=2025-01-01, TimeSlot=12:00–13:00
+[2025-05-14 19:59:43] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=3, Date=2025-01-03, TimeSlot=15:00–16:00
+[2025-05-14 19:59:55] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 20:00:02] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:00:07] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=11
+[2025-05-14 20:00:12] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=9
+[2025-05-14 20:00:17] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 20:00:24] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:00:41] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=3, Date=2025-01-03, TimeSlot=15:00–16:00
+[2025-05-14 20:23:38] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:24:05] User=Instructor User | Action=SubmitReservation | Status=Failed: Conflict with an APPROVED reservation for ClassId=3, Date=2025-01-23, TimeSlot=16:00–17:00.
+[2025-05-14 20:24:25] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=2, Date=2025-01-23, TimeSlot=16:00–17:00
+[2025-05-14 20:25:29] User=Instructor User | Action=SubmitReservation | Status=Auto-Rejected: Reservation attempt on public holiday (Atatürk’ü Anma, Gençlik ve Spor Bayramı) for 2025-05-19.
+[2025-05-14 20:25:30] User=Instructor User | Action=SubmitReservationAutoReject | Status=Success (Auto-Rejected) | ClassId=3, Date=2025-05-19, TimeSlot=12:00–13:00
+[2025-05-14 20:25:40] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 20:25:46] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:25:59] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=12.
+[2025-05-14 20:26:01] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=13.
+[2025-05-14 20:26:08] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 20:26:16] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:27:12] User=Instructor User | Action=SubmitReservation | Status=Failed: Weekend reservation attempt for 2025-01-04.
+[2025-05-14 20:30:26] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:30:58] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-02-07, TimeSlot=16:00–17:00
+[2025-05-14 20:31:26] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-02-07, TimeSlot=16:00–17:00
+[2025-05-14 20:31:37] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-02-07, TimeSlot=16:00–17:00
+[2025-05-14 20:31:39] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 20:31:45] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 20:33:46] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 20:33:56] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:03:33] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:03:44] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=2, Date=2025-03-14, TimeSlot=11:00–12:00
+[2025-05-14 21:04:05] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=3, Date=2025-03-14, TimeSlot=11:00–12:00
+[2025-05-14 21:04:22] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 21:04:27] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:08:15] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:25:01] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:26:46] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 21:26:51] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:33:11] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:33:21] User=Instructor User | Action=SubmitReservationAutoReject | Status=Success (Auto-Rejected) | ClassId=2, Date=2025-01-01, TimeSlot=10:00–11:00
+[2025-05-14 21:33:33] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-01-10, TimeSlot=10:00–11:00
+[2025-05-14 21:33:47] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=4, Date=2025-01-10, TimeSlot=10:00–11:00
+[2025-05-14 21:33:50] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 21:33:55] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:46:29] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:46:33] User=Instructor User | Action=Logout | Status=Success
+[2025-05-14 21:46:38] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:46:43] User=Admin User | Action=AutoConflictUpdate | Status=ReservationId=22 status set to Conflict due to approval of ReservationId=21
+[2025-05-14 21:46:43] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=21
+[2025-05-14 21:47:13] User=Admin User | Action=Logout | Status=Success
+[2025-05-14 21:47:20] User=instructor@test.com | Action=LoginAttempt | Status=Failed: Invalid password
+[2025-05-14 21:47:27] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 21:53:39] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 22:00:08] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 23:41:08] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-14 23:57:51] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:06:26] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:06:37] User=Instructor User | Action=SubmitReservationAutoReject | Status=Success (Auto-Rejected) | ClassId=2, Date=2025-01-01, TimeSlot=11:00–12:00
+[2025-05-15 00:06:48] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=7, Date=2025-02-03, TimeSlot=12:00–13:00
+[2025-05-15 00:23:03] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:30:00] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:33:46] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:33:51] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=24
+[2025-05-15 00:33:56] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 00:34:02] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:37:13] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:45:42] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 00:54:52] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:12:16] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:12:16] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:12:16] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:12:16] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:12:20] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:12:20] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:12:20] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:12:21] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:12:22] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:22] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:22] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:24] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:12:25] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:6. Session UserId: 8
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:6.
+[2025-05-15 01:12:26] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:6.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:12:27] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:28] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:12:29] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:12:30] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:12:31] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:12:31] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:12:31] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:13:05] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:13:05] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:13:05] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:13:06] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:13:06] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:13:06] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:13:08] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:13:08] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:13:08] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:13:09] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:13:09] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:13:09] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:13:21] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:13:21] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:13:21] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:13:23] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:13:23] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:13:23] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:13:24] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:13:24] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:13:24] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:18:47] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:18:47] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:18:47] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:18:47] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:19:03] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:19:03] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:19:03] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:19:04] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:19:04] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:19:04] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:19:05] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:19:07] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:19:07] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:19:07] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:19:08] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:19:09] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:19:09] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:19:09] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:22:03] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:22:03] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:22:03] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:22:03] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:22:07] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:22:08] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:22:08] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:22:08] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:22:14] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:22:14] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:22:14] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:22:21] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:22:21] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:22:21] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:22:22] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:22:47] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:22:47] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:22:47] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:22:56] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:22:56] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:22:56] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:23:02] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:23:02] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:23:02] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:28:48] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:28:48] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:28:48] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:28:48] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:29:01] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:29:01] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:29:01] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:29:04] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:29:04] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:29:04] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:29:22] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:29:22] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:29:22] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:31:48] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:31:48] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:31:48] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:44:40] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:44:40] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:44:40] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:44:40] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:44:48] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:44:48] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:44:48] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:44:49] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:44:50] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:44:50] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:44:52] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:44:52] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:44:52] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:44:53] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2024, Month:12. Session UserId: 8
+[2025-05-15 01:44:53] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2024, M:12.
+[2025-05-15 01:44:53] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2024, M:12.
+[2025-05-15 01:45:01] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:45:02] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:45:02] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:45:32] User=Instructor User | Action=SubmitReservation | Status=Success (Pending) | ClassId=3, Date=2025-05-16, TimeSlot=11:00–12:00
+[2025-05-15 01:45:32] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:45:32] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:45:32] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:45:41] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 01:45:46] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:45:52] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=25
+[2025-05-15 01:45:57] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 01:46:03] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 01:46:03] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:4. Session UserId: 8
+[2025-05-15 01:46:03] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:4.
+[2025-05-15 01:46:03] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:4.
+[2025-05-15 01:46:27] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:3. Session UserId: 8
+[2025-05-15 01:46:27] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 0 reservations for User:8, Y:2025, M:3.
+[2025-05-15 01:46:27] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 0 events for User:8, Y:2025, M:3.
+[2025-05-15 01:46:30] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:2. Session UserId: 8
+[2025-05-15 01:46:30] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 1 reservations for User:8, Y:2025, M:2.
+[2025-05-15 01:46:30] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 1 events for User:8, Y:2025, M:2.
+[2025-05-15 01:46:31] User=Instructor User | Action=CalendarFetchAttempt | Status=Fetching calendar data for Year:2025, Month:1. Session UserId: 8
+[2025-05-15 01:46:31] User=Instructor User | Action=CalendarDbFetch | Status=DB query returned 4 reservations for User:8, Y:2025, M:1.
+[2025-05-15 01:46:31] User=Instructor User | Action=CalendarFetchSuccess | Status=Processed 4 events for User:8, Y:2025, M:1.
+[2025-05-15 01:54:19] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:28:01] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:28:05] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 02:28:15] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:28:21] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 02:31:01] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:31:49] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:33:56] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:42:20] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:45:53] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:50:29] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 02:55:06] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:05:01] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:09:23] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:15:02] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:15:06] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 03:15:12] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:17:12] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:24:37] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 03:30:12] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:30:40] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:32:20] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 10:32:46] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:33:17] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 10:33:42] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:45:06] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:50:17] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 10:56:12] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 11:10:22] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 11:12:54] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 11:13:16] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 11:13:22] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:01:08] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:06:57] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:07:07] User=AdminTermPanel | Action=DeleteTermBlocked | Status=Attempt to delete Term ID 1 ('') blocked due to existing reservations.
+[2025-05-15 14:07:47] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 14:07:53] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:08:20] User=Instructor User | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=1, Date=2025-04-09, TimeSlot=11:00–12:00
+[2025-05-15 14:08:58] User=Instructor User | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=5, Date=2025-05-07, TimeSlot=12:00–13:00
+[2025-05-15 14:12:20] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:12:27] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=26
+[2025-05-15 14:12:32] User=Admin User | Action=RejectReservation | Status=Success | ReservationId=27
+[2025-05-15 14:12:46] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 14:12:51] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:14:37] User=Instructor User | Action=SubmitRecurringReservation | Status=Success (23 pending) | ClassId=2, DayOfWeek=Thursday, TimeSlot=10:00–11:00, Term=
+[2025-05-15 14:16:04] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 14:16:09] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:16:14] User=Admin User | Action=ApproveReservation | Status=Success | ReservationId=29
+[2025-05-15 14:18:28] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:19:13] User=Instructor User | Action=SubmitRecurringReservation | Status=Success (23 pending) | ClassId=3, DayOfWeek=Thursday, TimeSlot=12:00–13:00, Term=
+[2025-05-15 14:37:57] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:50:05] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:52:09] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 14:52:14] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:53:44] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 14:53:49] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:54:00] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 14:54:06] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:54:50] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 14:54:54] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:55:00] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 14:55:06] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:55:25] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=3, Date=2025-04-11, TimeSlot=11:00–12:00
+[2025-05-15 14:55:34] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 14:55:40] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:57:04] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 14:57:12] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 14:57:39] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:40:48] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:41:15] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=2, Date=2025-05-02, TimeSlot=11:00–12:00
+[2025-05-15 15:41:18] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 15:41:23] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:41:23] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 15:41:40] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=76 approved.
+[2025-05-15 15:41:40] User=Admin User | Action=EmailAttempt | Status=Attempting to send approval email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 76
+[2025-05-15 15:41:42] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 15:42:00] User=Admin User | Action=RejectReservationSuccess | Status=ReservationId=75 rejected.
+[2025-05-15 15:42:00] User=Admin User | Action=EmailAttempt | Status=Attempting to send rejection email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 75
+[2025-05-15 15:42:01] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 15:42:29] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 15:42:34] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:42:53] User=Instructor User | Action=SendFeedback | Status=Success | ReservationId=26, ClassName='CENG101', ClassId=1 | Rating=5
+[2025-05-15 15:42:55] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 15:43:03] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:43:03] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 15:49:21] User=admin@test.com | Action=LoginAttempt | Status=Failed: Invalid password
+[2025-05-15 15:49:27] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 15:49:27] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 16:21:58] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:22:59] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 16:23:04] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:23:10] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 16:23:14] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:23:24] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 16:24:46] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:24:58] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 16:33:33] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:33:33] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 16:33:36] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 16:33:41] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:39:57] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:51:56] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:57:36] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:58:55] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=2, Date=2025-03-07, TimeSlot=12:00–13:00
+[2025-05-15 16:59:06] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 16:59:11] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 16:59:11] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 16:59:37] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=77 approved.
+[2025-05-15 16:59:37] User=Admin User | Action=EmailAttempt | Status=Attempting to send approval email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 77
+[2025-05-15 16:59:38] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 16:59:46] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 16:59:58] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 17:00:56] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 18:46:27] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:47:58] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:47:58] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 18:48:10] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 18:48:17] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:48:31] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=1, Date=2025-04-17, TimeSlot=10:00–11:00
+[2025-05-15 18:48:41] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 18:48:53] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:48:53] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 18:49:05] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=78 approved.
+[2025-05-15 18:49:05] User=Admin User | Action=EmailAttempt | Status=Attempting to send approval email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 78
+[2025-05-15 18:49:06] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 18:49:24] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 18:49:29] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:49:38] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 18:49:53] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 18:50:04] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 19:49:54] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 19:51:54] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 19:51:54] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 19:52:02] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 19:52:13] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 19:52:38] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 19:58:33] User=mertali@gmail.com | Action=FeedbackSubmission | Status=Failed: DB Error - An error occurred while saving the entity changes. See the inner exception for details.. Inner: Invalid column name 'AssociatedInstructorId'.
+Invalid column name 'FeedbackDate'.
+Invalid column name 'SpecificDate'.
+Invalid column name 'SpecificTimeSlot'.
+Invalid column name 'SubmitterEmail'.
+Invalid column name 'SubmitterFullName'.
+[2025-05-15 20:21:58] User=mertali@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 1 submitted by mertalı mucuk.
+[2025-05-15 20:22:19] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:23:16] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:23:16] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 20:24:29] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 20:34:50] User=camlibel@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 1 on 17.04.2025 submitted by faruk nafiz.
+[2025-05-15 20:34:55] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:35:34] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:35:34] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 20:58:28] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:59:06] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:59:24] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=2, Date=2025-05-13, TimeSlot=10:00–11:00
+[2025-05-15 20:59:40] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 20:59:45] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 20:59:45] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:00:02] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=79 approved.
+[2025-05-15 21:00:02] User=Admin User | Action=EmailAttempt | Status=Attempting to send approval email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 79
+[2025-05-15 21:00:04] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:00:13] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 21:01:01] User=messi@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 2 on 13.05.2025 for InstructorId  submitted by lionel messi.
+[2025-05-15 21:01:06] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:01:06] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:07:35] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:07:35] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:08:44] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 21:37:19] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:37:19] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:38:15] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 21:39:40] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:40:25] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 21:41:05] User=cristiano@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 3 on 16.05.2025 for InstructorId  submitted by cristiano.
+[2025-05-15 21:41:10] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:41:10] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:42:01] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 21:42:26] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 21:42:31] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:51:54] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 21:51:54] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 22:24:33] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 22:24:33] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 22:24:34] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-04-26 to 2025-06-07
+[2025-05-15 22:24:34] User=Admin User | Action=CalendarDataSent | Status=Returning 12 events for calendar.
+[2025-05-15 22:25:06] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 22:25:12] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 22:26:02] User=Test Instructor | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=8, Date=2025-03-04, TimeSlot=14:00–15:00
+[2025-05-15 22:26:22] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 22:26:27] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 22:26:27] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 22:26:28] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-04-26 to 2025-06-07
+[2025-05-15 22:26:28] User=Admin User | Action=CalendarDataSent | Status=Returning 12 events for calendar.
+[2025-05-15 22:26:42] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=80 approved.
+[2025-05-15 22:26:42] User=Admin User | Action=EmailAttempt | Status=Attempting to send approval email to UserID: 16, Email: cengstmp@gmail.com for ReservationID: 80
+[2025-05-15 22:26:44] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 22:26:45] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-04-26 to 2025-06-07
+[2025-05-15 22:26:45] User=Admin User | Action=CalendarDataSent | Status=Returning 12 events for calendar.
+[2025-05-15 22:27:27] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 22:27:28] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-04-26 to 2025-06-07
+[2025-05-15 22:27:28] User=Admin User | Action=CalendarDataSent | Status=Returning 12 events for calendar.
+[2025-05-15 22:27:35] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-03-29 to 2025-05-10
+[2025-05-15 22:27:35] User=Admin User | Action=CalendarDataSent | Status=Returning 13 events for calendar.
+[2025-05-15 22:27:36] User=Admin User | Action=CalendarDataRequested | Status=Fetching reservations for calendar from 2025-02-22 to 2025-04-05
+[2025-05-15 22:27:36] User=Admin User | Action=CalendarDataSent | Status=Returning 12 events for calendar.
+[2025-05-15 22:29:11] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 22:29:16] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 22:30:05] User=Instructor User | Action=SubmitSingleReservation | Status=Success (Pending) | ClassId=4, Date=2025-04-11, TimeSlot=11:00–12:00
+[2025-05-15 23:12:32] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:12:58] User=Instructor User | Action=CancelReservationRequest | Status=Success: Cancellation requested for Reservation ID: 69. Previous status: Pending.
+[2025-05-15 23:13:28] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 23:13:33] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:13:33] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:13:41] User=Admin User | Action=ApproveCancellationSuccess | Status=ReservationId=69 cancellation approved. Status set to Cancelled.
+[2025-05-15 23:13:42] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:36:08] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:36:38] User=Instructor User | Action=ModificationRequestSent | Status=Success: Modification requested for Res ID: 48. Details: değiştirmek istiom
+[2025-05-15 23:36:43] User=Instructor User | Action=Logout | Status=Success
+[2025-05-15 23:36:48] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:36:48] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:37:03] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=48 approved. (Previous status: ModificationRequested)
+[2025-05-15 23:37:04] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:38:06] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:38:15] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:45:04] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 23:48:08] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:49:13] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 23:49:17] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:49:17] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:50:00] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=82 approved. (Previous status: Pending)
+[2025-05-15 23:50:01] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:50:21] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 23:50:27] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:50:56] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 23:51:01] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:51:01] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:52:18] User=AdminTermPanel | Action=DeleteTermBlocked | Status=Attempt to delete Term ID 1 ('academic') blocked due to existing reservations.
+[2025-05-15 23:53:02] User=AdminTermPanel | Action=AddTermSuccess | Status=New term '2025' added.
+[2025-05-15 23:53:07] User=AdminTermPanel | Action=DeleteTermSuccess | Status=Term ID 2 ('2025') successfully deleted.
+[2025-05-15 23:54:34] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:54:55] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 23:55:03] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:56:00] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-15 23:56:05] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-15 23:56:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-15 23:59:52] User=Admin User | Action=Logout | Status=Success
+[2025-05-15 23:59:58] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:00:47] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 00:00:52] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:02:03] User=Instructor User | Action=ModificationRequestSent | Status=Success: Modification requested for Res ID: 86. Details: canım istedi
+[2025-05-16 00:02:36] User=Instructor User | Action=Logout | Status=Success
+[2025-05-16 00:02:40] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:02:40] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 00:03:30] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=86 approved. (Previous status: ModificationRequested)
+[2025-05-16 00:03:31] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 00:03:47] User=Admin User | Action=ApproveCancellationSuccess | Status=ReservationId=74 cancellation approved.
+[2025-05-16 00:03:48] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 00:03:52] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 00:04:00] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:06:08] User=Instructor User | Action=Logout | Status=Success
+[2025-05-16 00:06:12] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:06:12] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 00:06:33] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 00:06:51] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:07:27] User=Instructor User | Action=Logout | Status=Success
+[2025-05-16 00:08:38] User=pricision@suit.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 7 on 8.05.2025 for InstructorId  submitted by harvey spectur.
+[2025-05-16 00:08:46] User=admin@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 00:08:46] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 00:10:14] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 00:25:56] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:11:07] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:11:07] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:11:18] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 01:11:38] User=mertal@gmail.com | Action=SupportRequestSent | Status=Support message from mert ali (mertal@gmail.com).
+[2025-05-16 01:11:39] User=mertal@gmail.com | Action=SupportEmailSent | Status=Support email sent to admin: cengweb382@gmail.com
+[2025-05-16 01:18:00] User=ali@gmail.com | Action=SupportRequestSent | Status=Support message from mert (ali@gmail.com).
+[2025-05-16 01:18:01] User=ali@gmail.com | Action=SupportEmailSent | Status=Support email sent to admin: cengweb382@gmail.com
+[2025-05-16 01:18:45] User=futbolcu@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 5 submitted by futbolcu. AssociatedInstructorId: 
+[2025-05-16 01:18:47] User=futbolcu@gmail.com | Action=FeedbackEmailSent | Status=Feedback email sent to admin: cengweb382@gmail.com
+[2025-05-16 01:19:12] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:31:23] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:51:53] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:52:25] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 89.
+[2025-05-16 01:52:29] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 01:52:38] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:52:38] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:52:48] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=89 approved. (Previous status: ModificationRequested)
+[2025-05-16 01:52:49] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:53:52] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 01:53:58] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:55:09] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 89.
+[2025-05-16 01:55:13] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 01:55:17] User=admin@test.com | Action=LoginAttempt | Status=Failed: User not found
+[2025-05-16 01:55:25] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:55:25] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:55:49] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=90 approved. (Previous status: Pending)
+[2025-05-16 01:55:50] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:55:58] User=Admin User | Action=RejectReservationSuccess | Status=ReservationId=89 rejected. (Previous status: ModificationRequested)
+[2025-05-16 01:56:00] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:56:07] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 01:56:18] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:56:48] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 01:56:52] User=admin@test.com | Action=LoginAttempt | Status=Failed: User not found
+[2025-05-16 01:56:59] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:56:59] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:57:14] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=91 approved. (Previous status: Pending)
+[2025-05-16 01:57:15] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 01:57:18] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 01:57:28] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:59:45] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 01:59:51] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 01:59:51] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:01:52] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 02:02:00] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:04:23] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 02:04:29] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:04:29] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:04:37] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=92 approved. (Previous status: Pending)
+[2025-05-16 02:04:38] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:39:45] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:40:26] User=Test Instructor | Action=ReservationAttemptHoliday | Status=Attempt to reserve on holiday: Emek ve Dayanışma Günü - 01.05.2025
+[2025-05-16 02:41:01] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 02:41:13] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:41:13] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:41:37] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=93 approved. (Previous status: Pending)
+[2025-05-16 02:41:38] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:41:46] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 02:41:51] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:42:55] User=Test Instructor | Action=ReservationDuplicatePending | Status=Instructor already has a pending request for class '1' at 11.04.2025 10:00–11:00
+[2025-05-16 02:43:01] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 02:43:14] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:43:14] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:43:19] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=94 approved. (Previous status: Pending)
+[2025-05-16 02:43:21] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 02:43:32] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 02:43:38] User=admin@test.com | Action=LoginAttempt | Status=Failed: User not found
+[2025-05-16 02:43:46] User=instructor@test.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:43:53] User=Instructor User | Action=Logout | Status=Success
+[2025-05-16 02:44:01] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 02:48:07] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:09:03] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:10:34] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 94. PrevStatus: Approved. Details: Mevcut Rezervasyon: Sınıf='CENG101', Tarih='11.04.2025', Saat='10:00–11:00'.
+--- Talep Edilen Değişiklikler ---
+- Yeni Sınıf: CENG102 (ID: 2)
+- Yeni Tarih: 10.04.2025
+- Yeni Saat Dilimi: 11:00–12:00
+Ek Notlar: Değişiklik talebim gönderildi
+
+[2025-05-16 10:10:56] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:11:05] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:11:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:11:30] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=94 approved. (Original request status: ModificationRequested)
+[2025-05-16 10:11:31] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:12:23] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 10:12:32] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:15:33] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 91. PrevStatus: Approved. Details: Mevcut Rezervasyon: Sınıf='CENG101', Tarih='24.04.2025', Saat='11:00–12:00'.
+--- Talep Edilen Değişiklikler ---
+- Yeni Sınıf: CENG202 (ID: 4)
+- Yeni Tarih: 08.05.2025
+- Yeni Saat Dilimi: 12:00–13:00
+Ek Notlar: Değişiklik istiyorum
+
+[2025-05-16 10:16:56] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:17:03] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:17:03] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:18:20] User=Admin User | Action=ApproveReservationSuccess | Status=ReservationId=91 approved. (Original request status: ModificationRequested)
+[2025-05-16 10:18:22] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:20:33] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 10:20:39] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:47:39] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:48:32] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 93. PrevStatus: Approved. RequestedNewClassId: 4, RequestedNewDate: 8.05.2025 00:00:00, RequestedNewTimeSlot: 12:00–13:00. Details: Mevcut Rezervasyon: Sınıf='CENG202', Tarih='07.05.2025', Saat='11:00–12:00'.
+--- Talep Edilen Değişiklikler ---
+- Yeni Tarih: 08.05.2025
+- Yeni Saat Dilimi: 12:00–13:00
+Ek Notlar: değişiklik talep ediyorum
+
+[2025-05-16 10:48:39] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:48:45] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:48:45] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:49:07] User=Admin User | Action=ModificationApproved_OldCancelled | Status=Old ResId=93 status set to Cancelled due to approved modification.
+[2025-05-16 10:49:07] User=Admin User | Action=ModificationApproved_NewCreated | Status=New ResId=95 created and approved for original ResId=93.
+[2025-05-16 10:49:08] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:49:27] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 10:49:33] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:50:22] User=Test Instructor | Action=CancellationRequested | Status=ResId 91, PreviousStatus: Approved
+[2025-05-16 10:50:29] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:50:34] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:50:34] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:50:41] User=Admin User | Action=ApproveCancellationSuccess | Status=ReservationId=91 cancellation approved. Status before CxReq: Approved
+[2025-05-16 10:50:43] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:51:00] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 10:51:08] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:51:20] User=Test Instructor | Action=ReservationAttemptHoliday | Status=Attempt to reserve on holiday: Emek ve Dayanışma Günü - 01.05.2025
+[2025-05-16 10:51:35] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:51:42] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:51:42] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:52:11] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 10:52:27] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:52:49] User=Test Instructor | Action=ReservationConflictInstructorApproved | Status=Instructor already has an approved class at 10.04.2025 10:00–11:00
+[2025-05-16 10:53:36] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:53:43] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:54:34] User=Test Instructor | Action=ReservationDuplicatePending | Status=Instructor already has a pending request for class '1' at 07.03.2025 10:00–11:00
+[2025-05-16 10:56:47] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 10:56:52] User=admin@test.com | Action=LoginAttempt | Status=Failed: User not found
+[2025-05-16 10:57:00] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 10:57:00] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:57:30] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:57:43] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=96 approved.
+[2025-05-16 10:57:43] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 10:57:45] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=97 approved.
+[2025-05-16 10:57:45] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:07:15] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 11:07:23] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:07:36] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:07:40] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:07:40] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:07:44] User=Admin User | Action=RejectPendingReservation | Status=ResId=98 pending request rejected. Holiday: False
+[2025-05-16 11:07:45] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:07:59] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 11:08:04] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:08:06] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:08:10] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:08:27] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:08:32] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:08:32] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:08:35] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=99 approved.
+[2025-05-16 11:08:35] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:31:42] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:32:21] User=Test Instructor | Action=ReservationAttemptHoliday | Status=Attempt to reserve on holiday: Ramazan Bayramı - 02.04.2025
+[2025-05-16 11:34:34] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:34:41] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:34:41] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:34:44] User=Admin User | Action=RejectPendingReservation | Status=ResId=101 pending request rejected. Holiday: False
+[2025-05-16 11:34:45] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:34:53] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 11:35:05] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:35:19] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:35:27] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:35:27] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:35:32] User=Admin User | Action=AutoConflictSet | Status=ResId=100 auto-set to Conflict. Approved ResId=102. Prev Status: Pending
+[2025-05-16 11:35:33] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=102 approved.
+[2025-05-16 11:35:35] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:36:36] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 11:36:41] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:36:58] User=Test Instructor | Action=ReservationAttemptHoliday | Status=Attempt to reserve on holiday: Emek ve Dayanışma Günü - 01.05.2025
+[2025-05-16 11:37:04] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 11:37:12] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 11:37:12] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 11:37:19] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 12:18:26] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 12:18:37] User=Test Instructor | Action=ReservationAttemptHoliday | Status=Attempt to reserve on holiday: Emek ve Dayanışma Günü - 01.05.2025
+[2025-05-16 12:19:03] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 12:19:10] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 12:19:10] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 12:23:02] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 12:23:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 12:23:19] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:06:01] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:06:09] User=Test Instructor | Action=ReservationAttemptOnHoliday_Warning | Status=Instructor attempting to reserve on holiday: Emek ve Dayanışma Günü - 01.05.2025. Request will be created as Pending but flagged for admin.
+[2025-05-16 13:06:11] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 13:06:32] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:06:33] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:06:50] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 13:06:54] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:07:27] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 102. PrevStatus: Approved. RequestedNewClassId: 3, RequestedNewDate: 16.04.2025 00:00:00, RequestedNewTimeSlot: 10:00–11:00. Details: Mevcut Rezervasyon: Sınıf='CENG201', Tarih='15.04.2025', Saat='10:00–11:00'.
+--- Talep Edilen Değişiklikler ---
+- Yeni Tarih: 16.04.2025
+Ek Notlar: değiştirmek
+
+[2025-05-16 13:07:30] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 13:07:37] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:07:37] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:07:42] User=Admin User | Action=ModificationApproved_OldCancelled | Status=Old ResId=102 status set to Cancelled due to approved modification. Original status was Approved.
+[2025-05-16 13:07:42] User=Admin User | Action=ModificationApproved_NewCreated | Status=New ResId=103 created and approved for original ResId=102.
+[2025-05-16 13:07:43] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:08:08] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 13:08:14] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:09:47] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 13:09:52] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:09:52] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:09:56] User=Admin User | Action=AutoConflictSet | Status=ResId=105 auto-set to Conflict. Approved ResId=104. Prev Status: Pending
+[2025-05-16 13:09:57] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=104 approved.
+[2025-05-16 13:09:59] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:10:37] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 13:10:43] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:11:06] User=Test Instructor | Action=ReservationAttemptOnHoliday_Warning | Status=Instructor attempting to reserve on holiday: Atatürk’ü Anma, Gençlik ve Spor Bayramı - 19.05.2025. Request will be created as Pending but flagged for admin.
+[2025-05-16 13:11:22] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 13:11:32] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:11:33] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:11:37] User=Admin User | Action=RejectPendingReservation | Status=ResId=106 pending request rejected. Holiday: False
+[2025-05-16 13:11:38] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:56:16] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:56:26] User=Test Instructor | Action=ReservationAttemptHoliday_Blocked | Status=Instructor reservation attempt BLOCKED for holiday: Ulusal Egemenlik ve Çocuk Bayramı - 23.04.2025.
+[2025-05-16 13:56:47] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 13:56:55] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 13:56:55] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 13:57:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:03:45] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:04:02] User=Test Instructor | Action=ReservationAttemptHoliday_Blocked | Status=Instructor reservation attempt BLOCKED for holiday: Ulusal Egemenlik ve Çocuk Bayramı - 23.04.2025.
+[2025-05-16 14:04:05] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 14:04:11] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:04:11] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:05:17] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 14:05:24] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:06:31] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 14:06:55] User=deneme123@mert.com | Action=SupportRequestSent | Status=Support message from deneme123 (deneme123@mert.com).
+[2025-05-16 14:06:56] User=deneme123@mert.com | Action=SupportEmailSent | Status=Support email sent to admin: cengweb382@gmail.com
+[2025-05-16 14:08:13] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:08:21] User=Test Instructor | Action=ReservationAttemptHoliday_Blocked | Status=Instructor reservation attempt BLOCKED for holiday: Emek ve Dayanışma Günü - 01.05.2025.
+[2025-05-16 14:10:11] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 14:10:18] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:10:18] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:10:26] User=Admin User | Action=AutoConflictSet | Status=ResId=108 auto-set to Conflict. Approved ResId=107. Prev Status: Pending
+[2025-05-16 14:10:28] User=Admin User | Action=ApprovePendingReservationSuccess | Status=ResId=107 approved.
+[2025-05-16 14:10:29] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:11:14] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 14:11:24] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:11:36] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 14:12:17] User=deneme@gmail.com | Action=FeedbackSubmission | Status=Success: Feedback for ClassId 2 submitted by deneme. AssociatedInstructorId: 
+[2025-05-16 14:12:19] User=deneme@gmail.com | Action=FeedbackEmailSent | Status=Feedback email sent to admin: cengweb382@gmail.com
+[2025-05-16 14:12:26] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:12:26] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:17:06] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 14:17:37] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:17:37] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:18:09] User=AdminTermPanel | Action=DeleteTermBlocked | Status=Attempt to delete Term ID 1 ('academic') blocked due to existing reservations.
+[2025-05-16 14:20:01] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:21:14] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 14:21:19] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:21:40] User=Test Instructor | Action=ModificationRequestSent | Status=Success: Mod. requested for Res ID: 104. PrevStatus: Approved. RequestedNewClassId: 3, RequestedNewDate: 9.03.2025 00:00:00, RequestedNewTimeSlot: 11:00–12:00. Details: Mevcut Rezervasyon: Sınıf='CENG101', Tarih='06.03.2025', Saat='14:00–15:00'.
+--- Talep Edilen Değişiklikler ---
+- Yeni Sınıf: CENG201 (ID: 3)
+- Yeni Tarih: 09.03.2025
+- Yeni Saat Dilimi: 11:00–12:00
+Ek Notlar: değiştirmek istiom
+
+[2025-05-16 14:21:52] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 14:21:58] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 14:21:58] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:22:03] User=Admin User | Action=ModificationApproved_OldCancelled | Status=Old ResId=104 status set to Cancelled due to approved modification. Original status was Approved.
+[2025-05-16 14:22:03] User=Admin User | Action=ModificationApproved_NewCreated | Status=New ResId=109 created and approved for original ResId=104.
+[2025-05-16 14:22:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 14:22:16] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 14:22:20] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:07:06] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:07:51] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 16:07:58] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:07:58] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:10:49] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:10:58] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:11:10] User=Admin User | Action=Logout | Status=Success
+[2025-05-16 16:11:17] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:18:38] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:39:41] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:41:02] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 16:41:06] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:41:06] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:53:54] User=cengstmp@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:53:59] User=Test Instructor | Action=Logout | Status=Success
+[2025-05-16 16:54:04] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:54:04] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:55:15] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 16:59:26] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 16:59:26] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.
+[2025-05-16 17:11:05] User=cengweb382@gmail.com | Action=LoginAttempt | Status=Success
+[2025-05-16 17:11:05] User=Admin User | Action=AdminPanelAccessed | Status=Admin panel viewed.

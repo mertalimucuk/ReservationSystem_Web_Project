@@ -1,0 +1,88 @@
+@page
+@model ReservationSystem.Pages.Admin.InstructorListModel
+@{
+    ViewData["Title"] = "Instructor List";
+}
+
+<div class="container-fluid mt-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0"><i class="fas fa-users me-2"></i>@ViewData["Title"]</h2>
+        
+    </div>
+
+   
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i>@Model.ErrorMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+   
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["SuccessMessage"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0"><i class="fas fa-list-ul me-2"></i>All Instructors</h5>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 5%;">#</th>
+                            <th style="width: 30%;">Full Name</th> 
+                            <th style="width: 40%;">Email</th> 
+                            <th class="text-center" style="width: 25%;">Assigned Sessions</th> 
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Instructors == null || !Model.Instructors.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-3">No instructors found.</td> 
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var instructor in Model.Instructors)
+                            {
+                                <tr>
+                                    <td>@instructor.InstructorId</td>
+                                    <td>@instructor.FullName</td>
+                                    <td>@instructor.Email</td>
+                                    <td class="text-center">@instructor.AssignedSessionsCount</td>
+                                    @*
+                                    <td class="text-center">
+                                        // Action butonları buraya gelebilir (eğer Actions sütunu aktif edilirse)
+                                    </td>
+                                    *@
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @if (Model.Instructors != null && Model.Instructors.Any())
+        {
+            <div class="card-footer text-muted bg-light small">
+                Total @Model.Instructors.Count() instructor(s) listed.
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @* No page-specific scripts needed for this view currently. *@
+}

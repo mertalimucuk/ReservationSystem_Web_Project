@@ -1,0 +1,91 @@
+@page "{id:int?}"
+@model ReservationSystem.Pages.Admin.TermEditModel
+@{
+    ViewData["Title"] = Model.Term?.Id > 0 ? "Edit Term" : "Create New Term"; 
+}
+
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h2 class="mb-0">
+        @if (Model.Term?.Id > 0)
+        {
+            <i class="fas fa-calendar-edit me-2"></i> 
+        }
+        else
+        {
+            <i class="fas fa-calendar-plus me-2"></i> 
+        }
+        @ViewData["Title"]
+    </h2>
+</div>
+<hr class="mb-4" />
+
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Html.Raw(Model.SuccessMessage)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @Html.Raw(Model.ErrorMessage)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="row justify-content-center"> 
+    <div class="col-md-8 col-lg-7"> 
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Term Details</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="Term.Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Term.Name" class="form-label"></label>
+                        <input asp-for="Term.Name" class="form-control" placeholder="e.g., 2024-2025 Spring" />
+                        <span asp-validation-for="Term.Name" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Term.StartDate" class="form-label"></label>
+                            <input asp-for="Term.StartDate" type="date" class="form-control" />
+                            <span asp-validation-for="Term.StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Term.EndDate" class="form-label"></label>
+                            <input asp-for="Term.EndDate" type="date" class="form-control" />
+                            <span asp-validation-for="Term.EndDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-check mb-3 p-3 border rounded bg-light-subtle"> 
+                        <input type="checkbox" class="form-check-input" asp-for="Term.IsActive" id="termIsActiveCheck" />
+                        <label class="form-check-label" asp-for="Term.IsActive" for="termIsActiveCheck">
+                            <strong>Is this term active?</strong>
+                        </label>
+                        <small class="form-text text-muted d-block mt-1">
+                            <i class="fas fa-info-circle me-1"></i>Only one term can be active at a time. If you activate this term, other active terms will be deactivated.
+                        </small>
+                    </div>
+
+                    <div class="mt-4 d-flex justify-content-end"> 
+                        <a asp-page="TermPanel" class="btn btn-outline-secondary me-2"><i class="fas fa-times-circle me-2"></i>Cancel</a>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-2"></i>Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

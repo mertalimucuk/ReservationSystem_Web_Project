@@ -1,0 +1,323 @@
+﻿@page
+@model ReservationSystem.Pages.AdminPanelModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Admin Panel"; 
+    var autoRejectHolidayIdentifier = "otomatik olarak reddedildi";
+    var systemBlockedHolidayIdentifier = "sistem tarafından engellendi";
+}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 px-3 border rounded shadow-sm">
+    <a class="navbar-brand fw-bold" asp-page="/AdminPanel"><i class="fas fa-user-shield me-2"></i>Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link @(Model.GetType() == typeof(ReservationSystem.Pages.AdminPanelModel) ? "active fw-semibold" : "")" asp-page="/AdminPanel"><i class="fas fa-tachometer-alt me-1"></i>Dashboard & Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/Admin/AdminReservationManagement"><i class="fas fa-tasks me-1"></i>Reservation List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/Admin/InstructorList"><i class="fas fa-users me-1"></i>Instructors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/Admin/ClassList"><i class="fas fa-chalkboard me-1"></i>Classes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-page="/Admin/TermPanel"><i class="fas fa-calendar-alt me-1"></i>Terms</a>
+            </li>
+        </ul>
+        <form method="post" asp-page="/Login" asp-page-handler="Logout">
+            @if (HttpContext.Session.GetString("UserName") != null)
+            {
+                <span class="navbar-text me-3">
+                    Welcome, @HttpContext.Session.GetString("UserName")
+                </span>
+            }
+            <button type="submit" class="btn btn-sm btn-outline-danger"><i class="fas fa-sign-out-alt me-1"></i>Logout</button>
+        </form>
+    </div>
+</nav>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-@TempData["MessageType"] alert-dismissible fade show mt-3" role="alert">
+        @Html.Raw(TempData["Message"]?.ToString()?.ReplaceLineEndings("<br />"))
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+        <h4 class="mb-0"><i class="fas fa-calendar-week me-2"></i>All Reservations Calendar View</h4>
+    </div>
+    <div class="card-body">
+        
+        <div id='adminCalendar'></div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-light d-flex flex-wrap justify-content-between align-items-center">
+        <h4 class="mb-2 mb-md-0 me-md-3"><i class="fas fa-clipboard-list me-2"></i>Reservation Requests (List View)</h4>
+        <form method="post" asp-page-handler="Export">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-file-export me-1"></i> Export as JSON
+            </button>
+        </form>
+    </div>
+    <div class="card-body p-0"> 
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm mb-0"> 
+                <thead class="table-dark">
+                    <tr>
+                        <th>Instructor</th>
+                        <th>Class Name</th>
+                        <th>Date & Time</th>
+                        <th>Status</th>
+                        <th>Details / Flags</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Reservations.Any())
+                    {
+                        <tr><td colspan="6" class="text-center text-muted py-3">No reservation requests found.</td></tr>
+                    }
+                    @foreach (var r in Model.Reservations)
+                    {
+                        bool isActualConflict = r.Status == "Conflict";
+                        bool isHoliday = Model.PublicHolidays.TryGetValue(r.Date.Date, out string? holidayNameForDisplay);
+                        if (string.IsNullOrEmpty(holidayNameForDisplay) && isHoliday) {
+                            holidayNameForDisplay = "Resmi Tatil";
+                        }
+                        bool isAutoRejectedHoliday = r.Status == "Rejected" && (r.ModificationRequestDetails?.Contains(autoRejectHolidayIdentifier) ?? false);
+                        
+                        string rowClass = "";
+                        string rowTitle = "";
+
+                        if (isAutoRejectedHoliday) {
+                            rowClass = "table-danger"; 
+                            rowTitle = r.ModificationRequestDetails ?? "Resmi tatil nedeniyle otomatik reddedildi.";
+                        }
+                        else if (isActualConflict) { rowClass = "table-danger"; rowTitle = "This request is in conflict."; }
+                        else if (isHoliday && (r.Status == "Pending" || r.Status == "ModificationRequested")) { rowClass = "table-warning"; rowTitle = $"Public holiday: {holidayNameForDisplay}"; }
+                        else if (r.Status == "Cancellation Requested") { rowClass = "table-info"; rowTitle = "Cancellation Requested.";}
+                        else if (r.Status == "ModificationRequested") { rowClass = "table-primary"; rowTitle = "Modification Requested.";}
+                        else if (r.Status == "Cancelled") { rowClass = "table-secondary text-muted"; rowTitle = "Cancelled.";}
+                        else if (r.Status == "Approved" && isHoliday) { rowClass = "table-success"; rowTitle = $"Approved (on Public Holiday: {holidayNameForDisplay})"; }
+
+                        <tr class="@rowClass" title="@rowTitle">
+                            <td>
+                                @if (r.Instructor != null) { @r.Instructor.FullName; }
+                                else if (r.InstructorId != 0) { @($"InsID:{r.InstructorId}"); }
+                                else { @("N/A"); }
+                            </td>
+                            <td>
+                                @(r.Class?.Name ?? "N/A")
+                                @if(r.ClassId > 0)
+                                {
+                                    <a asp-page="/Admin/ClassDetail" asp-route-id="@r.ClassId" class="btn btn-sm btn-outline-primary ms-1 py-0 px-1" title="View Class Details">
+                                        <i class="fas fa-eye small"></i>
+                                    </a>
+                                }
+                            </td>
+                            <td>@r.Date.ToString("dd.MM.yyyy") <span class="text-muted">@r.TimeSlot</span></td>
+                            <td>
+                                @switch (r.Status)
+                                {
+                                    case "Approved": <span class="badge text-bg-success">Approved</span>; break;
+                                    case "Rejected": <span class="badge text-bg-danger">Rejected</span>; break;
+                                    case "Conflict": <span class="badge text-bg-danger">Conflict</span>; break; 
+                                    case "Cancellation Requested": <span class="badge text-bg-info">Cancellation Req.</span>; break;
+                                    case "ModificationRequested": <span class="badge text-bg-primary">Modification Req.</span>; break;
+                                    case "Cancelled": <span class="badge text-bg-secondary">Cancelled</span>; break;
+                                    case "Pending": default: <span class="badge text-bg-warning">Pending</span>; break;
+                                }
+                            </td>
+                            <td> 
+                                @if (isAutoRejectedHoliday)
+                                {
+                                    <span class="badge bg-danger-subtle text-danger-emphasis border border-danger-subtle" title="@r.ModificationRequestDetails">
+                                        <i class="fas fa-ban me-1"></i> @(r.ModificationRequestDetails ?? "Auto-Rejected")
+                                    </span>
+                                }
+                                else if (isHoliday && r.Status != "Cancelled" && r.Status != "Rejected" && r.Status != "Conflict") 
+                                { 
+                                    <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle me-1" title="@holidayNameForDisplay">
+                                        <i class="fas fa-calendar-day me-1"></i> Holiday: @holidayNameForDisplay
+                                    </span>
+                                }
+                                else if (!isActualConflict && !isHoliday && r.Status == "Pending") 
+                                { <span class="badge bg-light text-dark border me-1">Ready for Review</span>; }
+                                
+                                @if (r.Status == "ModificationRequested" && !string.IsNullOrEmpty(r.ModificationRequestDetails) && !isAutoRejectedHoliday)
+                                {
+                                    <button type="button" class="btn btn-outline-secondary btn-sm py-0 px-1" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="top" title="@r.ModificationRequestDetails?.ReplaceLineEndings("<br />")">
+                                        <i class="fas fa-comment-dots me-1"></i> View Mod. Details
+                                    </button>
+                                }
+                            </td>
+                            <td>
+                                @if (isAutoRejectedHoliday)
+                                {
+                                    <span class="text-muted fst-italic">Sistem Tarafından Reddedildi</span>
+                                }
+                                else if (r.Status == "Pending" || r.Status == "ModificationRequested")
+                                {
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <form method="post" asp-page-handler="Approve" asp-route-id="@r.Id" class="d-inline">
+                                            <button type="submit" class="btn btn-success" title="Approve Request"><i class="fas fa-check me-1"></i>Approve</button>
+                                        </form>
+                                        <form method="post" asp-page-handler="Reject" asp-route-id="@r.Id" class="d-inline">
+                                            <button type="submit" class="btn btn-danger" title="Reject Request"><i class="fas fa-times me-1"></i>Reject</button>
+                                        </form>
+                                    </div>
+                                }
+                                else if (r.Status == "Cancellation Requested")
+                                {
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <form method="post" asp-page-handler="ApproveCancellation" asp-route-id="@r.Id" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-success" title="Approve Cancellation"><i class="fas fa-calendar-check me-1"></i>Approve Cx</button>
+                                        </form>
+                                        <form method="post" asp-page-handler="RejectCancellation" asp-route-id="@r.Id" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-danger" title="Reject Cancellation"><i class="fas fa-calendar-times me-1"></i>Reject Cx</button>
+                                        </form>
+                                    </div>
+                                }
+                                else if (r.Status == "Conflict")
+                                {
+                                    <span class="text-danger fw-bold">Conflicted</span>
+                                }
+                                else 
+                                {
+                                    <span class="text-muted">No actions</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow-sm">
+    <div class="card-header bg-light">
+        <h4 class="mb-0"><i class="fas fa-calendar-times me-2"></i>Blocked Holiday Reservation Attempts</h4>
+    </div>
+    <div class="card-body p-0"> 
+        @if (Model.BlockedHolidayAttemptsLog != null && Model.BlockedHolidayAttemptsLog.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-bordered mb-0"> 
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>Attempt Time</th>
+                            <th>Instructor</th>
+                            <th>Requested Class</th>
+                            <th>Requested Date & Time</th>
+                            <th>Blocked Due To (Holiday)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var attempt in Model.BlockedHolidayAttemptsLog)
+                        {
+                            <tr>
+                                <td>@attempt.AttemptTimestamp.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>@(attempt.Instructor?.FullName ?? $"InsID: {attempt.InstructorId}")</td>
+                                <td>@(attempt.Class?.Name ?? $"ClassID: {attempt.ClassId}")</td>
+                                <td>@attempt.RequestedDate.ToString("dd.MM.yyyy") <span class="text-muted">@attempt.RequestedTimeSlot</span></td>
+                                <td><span class="badge text-bg-warning">@attempt.HolidayName</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-muted p-3 mb-0">No blocked holiday reservation attempts found.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, { html: true }) 
+            })
+
+            var calendarEl = document.getElementById("adminCalendar");
+            if (!calendarEl) { console.error("❌ adminCalendar element not found."); return; }
+            
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                themeSystem: "bootstrap5", 
+                initialView: "dayGridMonth", 
+                height: 'auto', 
+                contentHeight: 600, 
+                handleWindowResize: true,
+                headerToolbar: { 
+                    left: "prev,next today", 
+                    center: "title", 
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek" 
+                },
+                buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day', list: 'List' },
+                
+                slotMinTime: "10:00:00",
+                slotMaxTime: "18:00:00",
+                slotDuration: "01:00:00",
+                allDaySlot: false,
+                nowIndicator: true,
+
+                eventDidMount: function(info) {
+                    if (info.event.extendedProps) {
+                        var props = info.event.extendedProps;
+                        var tooltipContent = `Class: ${props.className || 'N/A'}\nTime: ${props.timeSlot || 'N/A'}\nInstructor: ${props.instructor || 'N/A'}\nRequested By: ${props.requestedBy || 'N/A'}\nStatus: ${props.status || 'N/A'}`;
+                        
+                        if (props.modificationDetails && props.status !== 'Rejected' && !(props.modificationDetails?.includes('@autoRejectHolidayIdentifier'))) { 
+                            tooltipContent += `\nModification Details: ${props.modificationDetails.substring(0,100)}${props.modificationDetails.length > 100 ? '...' : '' }`;
+                        } else if (props.status === 'Rejected' && props.modificationDetails?.includes('@autoRejectHolidayIdentifier')) {
+                             tooltipContent += `\nReason: ${props.modificationDetails}`;
+                        }
+                        if (props.isHoliday && props.holidayName) { 
+                            tooltipContent += `\n(Public Holiday: ${props.holidayName})`; 
+                        } else if (props.isHoliday) {
+                            tooltipContent += `\n(Public Holiday)`;
+                        }
+                        
+                        var tooltipInstance = bootstrap.Tooltip.getInstance(info.el);
+                        if (tooltipInstance) {
+                            tooltipInstance.setContent({ '.tooltip-inner': tooltipContent.replace(/\n/g, '<br>') });
+                        } else {
+                            new bootstrap.Tooltip(info.el, { title: tooltipContent.replace(/\n/g, '<br>'), html: true, placement: 'top', trigger: 'hover', container: 'body' });
+                        }
+                    }
+                },
+                events: function (fetchInfo, successCallback, failureCallback) {
+                    fetch(`/AdminPanel?handler=CalendarReservations&start=${encodeURIComponent(fetchInfo.startStr)}&end=${encodeURIComponent(fetchInfo.endStr)}`)
+                        .then(response => {
+                            if (!response.ok) { failureCallback(new Error(`HTTP error! status: ${response.status}`)); return Promise.reject(`HTTP error! status: ${response.status}`);}
+                            return response.json();
+                        })
+                        .then(data => {
+                            if(data.error) { failureCallback(new Error(data.error)); console.error("Calendar data error:", data.error); } 
+                            else { successCallback(data); }
+                        })
+                        .catch(error => { failureCallback(error); console.error("Calendar fetch error:", error);});
+                }
+            });
+            calendar.render();
+        });
+    </script>
+}

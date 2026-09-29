@@ -1,0 +1,152 @@
+﻿@using Microsoft.AspNetCore.Http
+@using System.Security.Claims
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    var userRole = HttpContextAccessor.HttpContext?.Session.GetString("UserRole") ?? User.FindFirstValue(ClaimTypes.Role);
+    var userName = HttpContextAccessor.HttpContext?.Session.GetString("UserName") ?? User.FindFirstValue(ClaimTypes.GivenName);
+    var isAuthenticated = User.Identity?.IsAuthenticated ?? false;
+}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light"> 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Reservation System</title>
+
+   
+    <link rel="stylesheet" href="~/css/bootswatch.litera.min.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    @if (ViewData["Title"]?.ToString() == "Admin Panel" || ViewData["Title"]?.ToString() == "Instructor Panel" || ViewData["Title"]?.ToString()?.Contains("Class Detail") == true)
+    {
+        <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/main.min.css' rel='stylesheet' />
+    }
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm fixed-top"> 
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" asp-area="" asp-page="/Index">
+                    <i class="fas fa-calendar-alt me-2"></i>RESERVATION SYSTEM
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Index" ? "active fw-semibold" : "")" asp-area="" asp-page="/Index"><i class="fas fa-home me-1"></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Privacy" ? "active fw-semibold" : "")" asp-area="" asp-page="/Privacy"><i class="fas fa-user-secret me-1"></i>Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/Contact" ? "active fw-semibold" : "")" asp-area="" asp-page="/Contact"><i class="fas fa-envelope me-1"></i>Contact</a>
+                        </li>
+
+                        @if (isAuthenticated && userRole == "admin")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle @(ViewContext.RouteData.Values["Page"]?.ToString()?.ToLower().Contains("admin") == true ? "active fw-semibold" : "")" href="#" id="adminMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-shield me-1"></i>Admin Panel
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="adminMenu">
+                                    <li><a class="dropdown-item" asp-page="/AdminPanel"><i class="fas fa-concierge-bell me-2"></i>Reservation Requests</a></li>
+                                    <li><a class="dropdown-item" asp-page="/admin/AdminReservationPanel"><i class="fas fa-users-cog me-2"></i>Instructor Management</a></li>
+                                    <li><a class="dropdown-item" asp-page="/admin/TermPanel"><i class="fas fa-calendar-check me-2"></i>Term Management</a></li>
+                                    <li><a class="dropdown-item" asp-page="/admin/ClassList"><i class="fas fa-chalkboard me-2"></i>Class List</a></li>
+                                    <li><a class="dropdown-item" asp-page="/admin/AddClass"><i class="fas fa-plus-square me-2"></i>Add New Class</a></li>
+                                    <li><a class="dropdown-item" asp-page="/admin/InstructorList"><i class="fas fa-user-tie me-2"></i>Instructor List</a></li>
+                                </ul>
+                            </li>
+                        }
+                        @if (isAuthenticated && userRole == "instructor")
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link @(ViewContext.RouteData.Values["Page"]?.ToString() == "/InstructorPanel" ? "active fw-semibold" : "")" asp-page="/InstructorPanel"><i class="fas fa-chalkboard-teacher me-1"></i>Instructor Panel</a>
+                                </li>
+                                
+                        }
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-sm theme-toggle-btn me-2" id="themeToggleBtn" title="Toggle Dark/Light Mode">
+                            <i class="fas fa-moon theme-icon-moon" id="themeIconMoon"></i> 
+                            <i class="fas fa-sun theme-icon-sun d-none" id="themeIconSun"></i>
+                        </button>
+                        @if (isAuthenticated && !string.IsNullOrEmpty(userName))
+                        {
+                            <span class="navbar-text me-3">
+                                 Welcome, <strong>@userName</strong>!
+                            </span>
+                            <form method="post" asp-page="/Login" asp-page-handler="Logout" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            
+                            <a asp-page="/Login" class="btn btn-outline-secondary btn-sm" id="navbarLoginLink"> 
+                                <i class="fas fa-sign-in-alt me-1"></i>Login
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container-fluid main-content-area">
+        @if (TempData["Message"] != null && TempData["MessageType"] != null)
+        {
+            <div class="alert alert-@TempData["MessageType"] alert-dismissible fade show shadow-sm rounded-3 mt-3 mx-3" role="alert">
+                @Html.Raw(TempData["Message"])
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+         @if (ViewData["PageMessage"] != null && ViewData["PageMessageType"] != null)
+        {
+            <div class="alert alert-@ViewData["PageMessageType"] alert-dismissible fade show shadow-sm rounded-3 mt-3 mx-3" role="alert">
+                @Html.Raw(ViewData["PageMessage"])
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <main role="main" class="pb-4 pt-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer border-top text-muted mt-auto py-3"> 
+        <div class="container text-center">
+            &copy; @DateTime.Now.Year - Reservation System &bull; <a asp-area="" asp-page="/Privacy">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
+    
+    @if (ViewData["Title"]?.ToString() == "Admin Panel" || ViewData["Title"]?.ToString() == "Instructor Panel" || ViewData["Title"]?.ToString()?.Contains("Class Detail") == true)
+    {
+        <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    }
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/theme-toggle.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

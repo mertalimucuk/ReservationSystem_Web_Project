@@ -1,0 +1,117 @@
+@page
+@model ReservationSystem.Pages.Instructor.FeedbackFormModel
+@{
+    ViewData["Title"] = "Send Feedback";
+}
+
+<h2> Send Feedback</h2>
+<hr />
+
+
+@if (TempData["Message"] != null)
+{
+    var messageType = TempData["MessageType"]?.ToString() ?? "info"; 
+    <div class="alert alert-@messageType alert-dismissible fade show mb-3" role="alert">
+        @Html.Raw(TempData["Message"])
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (Model.ReservationOptions.Any()) 
+{
+    <div class="row">
+        <div class="col-md-8 col-lg-6">
+            <form method="post" class="card p-3 shadow-sm">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    
+                    <label asp-for="Feedback.ReservationId" class="form-label">Select Course Session</label>
+                    <select asp-for="Feedback.ReservationId" class="form-select" asp-items="Model.ReservationOptions" required>
+                        <option value="">-- Choose a course session to review --</option>
+                    </select>
+                    <span asp-validation-for="Feedback.ReservationId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                  
+                    <label asp-for="Feedback.Rating" class="form-label">Your Rating (1 to 5)</label>
+                    <div id="ratingStars" class="mb-1">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <span class="star" data-value="@i" style="font-size: 1.5rem; cursor: pointer; color: #ccc;">&#9733;</span>
+                        }
+                    </div>
+                  
+                    <input asp-for="Feedback.Rating" type="hidden" id="ratingInput" required />
+                    <span asp-validation-for="Feedback.Rating" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                 
+                    <label asp-for="Feedback.Comment" class="form-label">Your Comment (Optional)</label>
+                    <textarea asp-for="Feedback.Comment" class="form-control" rows="4" placeholder="Your comments about this session, classroom, materials, etc..."></textarea>
+                    <span asp-validation-for="Feedback.Comment" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Submit Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+}
+else if (TempData["Message"] == null) 
+{
+    <div class="alert alert-info">
+        You currently have no past or approved sessions available to provide feedback for.
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('#ratingStars .star');
+            const ratingInput = document.getElementById('ratingInput'); 
+
+            stars.forEach(star => {
+                star.addEventListener('click', function () {
+                    const value = this.dataset.value;
+                    ratingInput.value = value; 
+                    
+                    var event = new Event('input', { bubbles: true });
+                    ratingInput.dispatchEvent(event);
+                    var eventChange = new Event('change', { bubbles: true }); 
+                    ratingInput.dispatchEvent(eventChange);
+
+
+                    stars.forEach(s => {
+                        s.style.color = s.dataset.value <= value ? '#ffc107' : '#ccc';
+                    });
+                });
+                star.addEventListener('mouseover', function () {
+                    const hoverValue = this.dataset.value;
+                    stars.forEach(s => {
+                        s.style.color = s.dataset.value <= hoverValue ? '#ffc107' : '#ccc';
+                    });
+                });
+                star.addEventListener('mouseout', function () {
+                    const currentValue = ratingInput.value || 0;
+                    stars.forEach(s => {
+                        s.style.color = s.dataset.value <= currentValue ? '#ffc107' : '#ccc';
+                    });
+                });
+            });
+
+            
+            if (ratingInput.value && parseInt(ratingInput.value) > 0 && parseInt(ratingInput.value) <= 5) {
+                 stars.forEach(s => {
+                        s.style.color = s.dataset.value <= ratingInput.value ? '#ffc107' : '#ccc';
+                    });
+            }
+        });
+    </script>
+}

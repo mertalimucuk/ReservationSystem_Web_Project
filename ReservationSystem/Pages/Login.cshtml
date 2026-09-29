@@ -1,0 +1,200 @@
+@page
+@model ReservationSystem.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login / Contact"; 
+}
+
+<div class="container py-4"> 
+
+    @* LOGIN FORMU BÖLÜMÜ *@
+    <div class="row justify-content-center mb-5"> 
+        <div class="col-md-6 col-lg-5 col-xl-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <form method="post">
+                        
+                        <h4 class="mb-4 text-center">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login @* Font Awesome ikonu örneği *@
+                            @* Veya sadece: Login *@
+                        </h4>
+
+                        @if (TempData["ErrorMessage"] != null)
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                @TempData["ErrorMessage"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        @if (TempData["Message"] != null && TempData["MessageType"] != null)
+                        {
+                            var messageType = TempData["MessageType"] as string ?? "info";
+                            <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+                                @Html.Raw(TempData["Message"]?.ToString()?.ReplaceLineEndings("<br />"))
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <div class="input-group"> @* İkon eklemek için input-group *@
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <div class="input-group"> @* İkon eklemek için input-group *@
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="d-grid">
+                           
+                            <button type="submit" class="btn btn-dark btn-lg">Login</button> @* Örnek: btn-dark *@
+                            @* Veya Litera'nın ikincil butonu: <button type="submit" class="btn btn-secondary btn-lg">Login</button> *@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* CONTACT US BÖLÜMÜ *@
+    
+    <hr class="my-5"> 
+
+    <div class="row">
+        <div class="col-12"> 
+         
+            <h3 class="mb-4">
+                <i class="fas fa-headset me-2"></i>Contact Us @* Font Awesome ikonu örneği *@
+                @* Veya sadece: Contact Us *@
+            </h3>
+
+            <ul class="nav nav-tabs mb-3" id="contactTabs" role="tablist"> @* justify-content-center kaldırıldı *@
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="support-tab" data-bs-toggle="tab" data-bs-target="#support" type="button" role="tab" aria-controls="support" aria-selected="true">
+                        <i class="fas fa-question-circle me-1"></i>Support
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="feedback-tab" data-bs-toggle="tab" data-bs-target="#feedback" type="button" role="tab" aria-controls="feedback" aria-selected="false">
+                        <i class="fas fa-star me-1"></i>Feedback
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="contactTabContent">
+                <div class="tab-pane fade show active" id="support" role="tabpanel" aria-labelledby="support-tab">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                             <h5 class="card-title mb-3">Send Support Message</h5> @* Form başlığı *@
+                            <form method="post" asp-page-handler="SendSupport">
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-2" data-form-group="SupportForm"></div>
+                                <div class="mb-3">
+                                    <label asp-for="SupportForm.Name" class="form-label">Full Name</label>
+                                    <input asp-for="SupportForm.Name" class="form-control" placeholder="Your Full Name" />
+                                    <span asp-validation-for="SupportForm.Name" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="SupportForm.Email" class="form-label">Email Address</label>
+                                    <input asp-for="SupportForm.Email" class="form-control" placeholder="your.email@example.com" />
+                                    <span asp-validation-for="SupportForm.Email" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="SupportForm.Message" class="form-label">Message</label>
+                                    <textarea asp-for="SupportForm.Message" class="form-control" placeholder="Your message..." rows="4"></textarea>
+                                    <span asp-validation-for="SupportForm.Message" class="text-danger"></span>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-danger">Send Support Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
+                     <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-3">Submit Feedback</h5> @* Form başlığı *@
+                            <form method="post" asp-page-handler="SendFeedback">
+                                <div asp-validation-summary="ModelOnly" class="text-danger mb-2" data-form-group="FeedbackForm"></div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.Name" class="form-label">Full Name</label>
+                                    <input asp-for="FeedbackForm.Name" class="form-control" placeholder="Your Full Name" />
+                                    <span asp-validation-for="FeedbackForm.Name" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.Email" class="form-label">Email Address</label>
+                                    <input asp-for="FeedbackForm.Email" class="form-control" placeholder="your.email@example.com" />
+                                    <span asp-validation-for="FeedbackForm.Email" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.ClassId" class="form-label">Class Being Reviewed</label>
+                                    <select asp-for="FeedbackForm.ClassId" class="form-select" asp-items="Model.ClassOptions">
+                                        <option value="">-- Choose Class --</option>
+                                    </select>
+                                    <span asp-validation-for="FeedbackForm.ClassId" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.SpecificDate" class="form-label">Date of Class Session</label>
+                                    <input asp-for="FeedbackForm.SpecificDate" type="date" class="form-control" />
+                                    <span asp-validation-for="FeedbackForm.SpecificDate" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.Time" class="form-label">Time Slot of Session</label>
+                                    <select asp-for="FeedbackForm.Time" class="form-select" asp-items="Model.TimeSlotOptions">
+                                    </select>
+                                    <span asp-validation-for="FeedbackForm.Time" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.Rating" class="form-label">Rating (1-5)</label>
+                                    <input asp-for="FeedbackForm.Rating" type="number" class="form-control" placeholder="1-5" min="1" max="5" />
+                                    <span asp-validation-for="FeedbackForm.Rating" class="text-danger"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label asp-for="FeedbackForm.Comment" class="form-label">Your Feedback</label>
+                                    <textarea asp-for="FeedbackForm.Comment" class="form-control" rows="3" placeholder="Your detailed feedback..."></textarea>
+                                    <span asp-validation-for="FeedbackForm.Comment" class="text-danger"></span>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-danger">Submit Feedback</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var hash = window.location.hash;
+            if (hash) {
+                var tabEl = document.querySelector('.nav-tabs button[data-bs-target="' + hash + '"]');
+                if (tabEl) {
+                    var tab = new bootstrap.Tab(tabEl);
+                    tab.show();
+                }
+            }
+            var tabTriggerList = [].slice.call(document.querySelectorAll('#contactTabs button'));
+            tabTriggerList.forEach(function (tabTriggerEl) {
+                tabTriggerEl.addEventListener('shown.bs.tab', function (event) {
+                    if (history.pushState) {
+                        history.pushState(null, null, event.target.getAttribute('data-bs-target'));
+                    } else {
+                        window.location.hash = event.target.getAttribute('data-bs-target');
+                    }
+                });
+            });
+        });
+    </script>
+}

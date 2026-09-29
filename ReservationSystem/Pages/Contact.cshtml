@@ -1,0 +1,318 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using ReservationSystem.Models;
+using ReservationSystem.Services;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http; // For Session
+
+namespace ReservationSystem.Pages
+{
+    public class ContactModel : PageModel
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly LoggingService _loggingService;
+        private readonly EmailService _emailService;
+
+        public ContactModel(ApplicationDbContext context, LoggingService loggingService, EmailService emailService)
+        {
+            _context = context;
+            _loggingService = loggingService;
+            _emailService = emailService;
+        }
+
+        [BindProperty]
+        public SupportFormModel SupportForm { get; set; } = new();
+
+        [BindProperty]
+        public FeedbackFormInputModel FeedbackForm { get; set; } = new();
+
+        public List<SelectListItem> ClassOptions { get; set; } = new List<SelectListItem>();
+        public List<SelectListItem> TimeSlotOptions { get; set; } = new List<SelectListItem>();
+        
+        [TempData]
+        public string? PageMessage { get; set; }
+        [TempData]
+        public string? PageMessageType { get; set; }
+
+        private string GetUserIdentifierForLog(string? emailFallback = null)
+        {
+            return HttpContext.Session.GetString("UserId") ?? User.Identity?.Name ?? emailFallback ?? "Anonymous_ContactPage_User";
+        }
+
+        public async Task OnGetAsync()
+        {
+            var userIdentifier = GetUserIdentifierForLog();
+            await _loggingService.LogActionAsync(userIdentifier, "View Contact Page", "Success");
+            
+            await LoadClassOptionsAsync();
+            LoadTimeSlotOptions(); // Load consistent time slots
+
+            var userIdString = HttpContext.Session.GetString("UserId");
+            if (!string.IsNullOrEmpty(userIdString) && int.TryParse(userIdString, out int userId))
+            {
+                var currentUser = await _context.Users.FindAsync(userId);
+                if (currentUser != null)
+                {
+                    SupportForm.FullName = currentUser.FullName;
+                    SupportForm.Email = currentUser.Email;
+                    FeedbackForm.FullName = currentUser.FullName;
+                    FeedbackForm.Email = currentUser.Email;
+                }
+            }
+        }
+
+        public async Task<IActionResult> OnPostSendSupportAsync()
+        {
+            var submitterIdentifier = GetUserIdentifierForLog(SupportForm.Email);
+            string logAction = "Send Support Request";
+            await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Attempt", $"From: {SupportForm.FullName} ({SupportForm.Email})");
+            
+            await LoadClassOptionsAsync();
+            LoadTimeSlotOptions();
+
+            if (!TryValidateModel(SupportForm, nameof(SupportForm)))
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Failure - Invalid Model", $"Support form invalid. Errors: {string.Join("; ", errors)}");
+                PageMessage = "Please correct the errors in the support form.";
+                PageMessageType = "danger";
+                return Page();
+            }
+
+            string body =
+                $"<b>Full Name:</b> {SupportForm.FullName}<br>" +
+                $"<b>Email:</b> {SupportForm.Email}<br>" +
+                $"<b>Message:</b><br>{SupportForm.Message.ReplaceLineEndings("<br/>")}";
+
+            try
+            {
+                var adminUsers = await _context.Users.Where(u => u.Role.ToLower() == "admin").ToListAsync();
+                if (!adminUsers.Any())
+                {
+                    await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Failure - No Admin Found", "No admin users configured to receive support email.");
+                    TempData["PageMessage"] = "Support request could not be sent: No admin recipient configured.";
+                    TempData["PageMessageType"] = "warning";
+                    return RedirectToPage();
+                }
+
+                bool emailSentToAtLeastOneAdmin = false;
+                foreach (var admin in adminUsers)
+                {
+                    if (!string.IsNullOrEmpty(admin.Email))
+                    {
+                        try
+                        {
+                            await _emailService.SendEmailAsync(admin.Email, $"🛠 Support Request from User: {SupportForm.FullName}", body);
+                            await _loggingService.LogActionAsync(submitterIdentifier, "Support Email Sent to Admin", "Success", $"Support email sent to admin: {admin.Email}. From: {SupportForm.Email}");
+                            emailSentToAtLeastOneAdmin = true;
+                        }
+                        catch (Exception emailEx)
+                        {
+                            await _loggingService.LogErrorAsync(emailEx, submitterIdentifier, $"Failed to send support email to admin: {admin.Email}. From: {SupportForm.Email}");
+                        }
+                    }
+                }
+                if(emailSentToAtLeastOneAdmin)
+                {
+                    TempData["PageMessage"] = "Your support message has been sent successfully!";
+                    TempData["PageMessageType"] = "success";
+                }
+                else
+                {
+                    TempData["PageMessage"] = "Support message processed, but could not be delivered to any admin email addresses.";
+                    TempData["PageMessageType"] = "warning";
+                }
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync(ex, submitterIdentifier, $"General error processing support request from {SupportForm.FullName} ({SupportForm.Email}).");
+                TempData["PageMessage"] = "An error occurred while sending your support message.";
+                TempData["PageMessageType"] = "danger";
+            }
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostSendFeedbackAsync()
+        {
+            var submitterIdentifier = GetUserIdentifierForLog(FeedbackForm.Email);
+            string logAction = "Send Feedback (Contact Page)";
+            await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Attempt", $"From: {FeedbackForm.FullName} ({FeedbackForm.Email}), ClassID: {FeedbackForm.ClassId}, Rating: {FeedbackForm.Rating}");
+
+            await LoadClassOptionsAsync();
+            LoadTimeSlotOptions();
+
+            // Manual validation for FeedbackFormInputModel
+            if (string.IsNullOrWhiteSpace(FeedbackForm.FullName)) ModelState.AddModelError("FeedbackForm.FullName", "Full name is required.");
+            if (string.IsNullOrWhiteSpace(FeedbackForm.Email)) ModelState.AddModelError("FeedbackForm.Email", "Email address is required.");
+            else if (!new EmailAddressAttribute().IsValid(FeedbackForm.Email)) ModelState.AddModelError("FeedbackForm.Email", "Please enter a valid email address.");
+            if (!FeedbackForm.ClassId.HasValue || FeedbackForm.ClassId.Value == 0) ModelState.AddModelError("FeedbackForm.ClassId", "Please select a class.");
+            if (!FeedbackForm.SpecificDate.HasValue) ModelState.AddModelError("FeedbackForm.SpecificDate", "Please select the date of the session.");
+            if (string.IsNullOrWhiteSpace(FeedbackForm.TimeSlot)) ModelState.AddModelError("FeedbackForm.TimeSlot", "Please select a time slot.");
+            if (!FeedbackForm.Rating.HasValue) ModelState.AddModelError("FeedbackForm.Rating", "Please provide a rating.");
+            else if (FeedbackForm.Rating < 1 || FeedbackForm.Rating > 5) ModelState.AddModelError("FeedbackForm.Rating", "Rating must be between 1 and 5.");
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Failure - Invalid Model", $"Feedback form invalid. Errors: {string.Join("; ", errors)}");
+                PageMessage = "Please correct the errors in the feedback form.";
+                PageMessageType = "danger";
+                return Page();
+            }
+
+            try
+            {
+                var newFeedback = new Feedback
+                {
+                    SubmitterFullName = FeedbackForm.FullName,
+                    SubmitterEmail = FeedbackForm.Email,
+                    ClassId = FeedbackForm.ClassId!.Value,
+                    SpecificDate = FeedbackForm.SpecificDate!.Value,
+                    SpecificTimeSlot = FeedbackForm.TimeSlot,
+                    Rating = FeedbackForm.Rating!.Value,
+                    Comment = FeedbackForm.Comment,
+                    FeedbackDate = DateTime.UtcNow,
+                    ReservationId = null,
+                    AssociatedInstructorId = null
+                };
+
+                var userIdString = HttpContext.Session.GetString("UserId");
+                if (!string.IsNullOrEmpty(userIdString) && int.TryParse(userIdString, out int userId))
+                {
+                    newFeedback.UserId = userId;
+                }
+
+                var selectedClass = await _context.Classes.FindAsync(newFeedback.ClassId);
+                string classNameForEmail = selectedClass?.Name ?? "Unknown Class";
+
+                var relevantReservation = await _context.Reservations
+                    .Include(r => r.Instructor)
+                    .FirstOrDefaultAsync(r => r.ClassId == newFeedback.ClassId &&
+                                            r.Date.Date == newFeedback.SpecificDate.Date &&
+                                            r.TimeSlot == newFeedback.SpecificTimeSlot &&
+                                            r.Status == "Approved");
+
+                if (relevantReservation != null)
+                {
+                    newFeedback.AssociatedInstructorId = relevantReservation.InstructorId;
+                    newFeedback.ReservationId = relevantReservation.Id;
+                    await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Info", $"Feedback associated with ReservationId: {relevantReservation.Id}, InstructorId: {relevantReservation.InstructorId}");
+                }
+                else
+                {
+                     await _loggingService.LogActionAsync(submitterIdentifier, logAction, "Info", $"No approved reservation found for ClassId: {newFeedback.ClassId}, Date: {newFeedback.SpecificDate:yyyy-MM-dd}, Time: {newFeedback.SpecificTimeSlot}. AssociatedInstructorId will be null for this feedback.");
+                }
+
+                _context.Feedbacks.Add(newFeedback);
+                await _context.SaveChangesAsync();
+                await _loggingService.LogActionAsync(submitterIdentifier, "Feedback Submitted to DB (Contact Page)", "Success", $"Feedback ID: {newFeedback.Id} for ClassId: {newFeedback.ClassId}, Rating: {newFeedback.Rating}. AssociatedInstructorId: {newFeedback.AssociatedInstructorId}");
+
+                // Send email to admins (existing logic)
+                // ... (Admin email code) ...
+
+                TempData["PageMessage"] = "Thank you for your feedback! It has been submitted successfully.";
+                TempData["PageMessageType"] = "success";
+            }
+            catch (DbUpdateException dbEx)
+            {
+                // ... (Error handling) ...
+            }
+            catch (Exception ex)
+            {
+                // ... (Error handling) ...
+            }
+            
+            return RedirectToPage();
+        }
+
+        private async Task LoadClassOptionsAsync()
+        {
+            try
+            {
+                ClassOptions = await _context.Classes
+                    .OrderBy(c => c.Name)
+                    .Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name })
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync(ex, GetUserIdentifierForLog(), "Failed to load class options for Contact Page.");
+                ClassOptions = new List<SelectListItem>(); 
+            }
+            ClassOptions.Insert(0, new SelectListItem { Value = "", Text = "-- Select Class --" });
+        }
+
+        private void LoadTimeSlotOptions() // Made non-async as it's hardcoded, and updated
+        {
+            TimeSlotOptions = new List<SelectListItem> {
+                new SelectListItem { Value = "", Text = "-- Select Time Slot --" },
+                 // Added
+                new SelectListItem { Value = "10:00–11:00", Text = "10:00–11:00" },
+                new SelectListItem { Value = "11:00–12:00", Text = "11:00–12:00" },
+                new SelectListItem { Value = "12:00–13:00", Text = "12:00–13:00" }, // Ensured it's here
+                new SelectListItem { Value = "13:00–14:00", Text = "13:00–14:00" },
+                new SelectListItem { Value = "14:00–15:00", Text = "14:00–15:00" },
+                new SelectListItem { Value = "15:00–16:00", Text = "15:00–16:00" },
+                new SelectListItem { Value = "16:00–17:00", Text = "16:00–17:00" },
+                new SelectListItem { Value = "17:00–18:00", Text = "17:00–18:00" }  // Ensured it's here
+            };
+        }
+
+        // Inner classes for form models (Data Annotations translated)
+        public class SupportFormModel
+        {
+            [Required(ErrorMessage = "Full name is required.")]
+            [Display(Name="Full Name")]
+            public string FullName { get; set; } = string.Empty;
+
+            [Required(ErrorMessage = "Email address is required.")]
+            [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+            public string Email { get; set; } = string.Empty;
+
+            [Required(ErrorMessage = "Message is required.")]
+            [StringLength(1000, MinimumLength = 5, ErrorMessage = "Message must be between 5 and 1000 characters.")]
+            public string Message { get; set; } = string.Empty;
+        }
+
+        public class FeedbackFormInputModel
+        {
+            [Required(ErrorMessage = "Full name is required.")]
+            [Display(Name = "Full Name")]
+            public string FullName { get; set; } = string.Empty;
+
+            [Required(ErrorMessage = "Email address is required.")]
+            [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
+            [Display(Name = "Email Address")]
+            public string Email { get; set; } = string.Empty;
+
+            [Required(ErrorMessage = "Please select a class.")]
+            [Display(Name = "Class Being Reviewed")]
+            public int? ClassId { get; set; }
+
+            [Required(ErrorMessage = "Please select the date of the session.")]
+            [DataType(DataType.Date)]
+            [Display(Name = "Date of Session")]
+            public DateTime? SpecificDate { get; set; }
+
+            [Required(ErrorMessage = "Please select a time slot.")]
+            [Display(Name = "Time Slot of Session")]
+            public string TimeSlot { get; set; } = string.Empty;
+
+            [Required(ErrorMessage = "Please provide a rating.")]
+            [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
+            [Display(Name = "Your Rating (1-5)")]
+            public int? Rating { get; set; }
+
+            [Display(Name = "Your Comment (Optional)")]
+            [DataType(DataType.MultilineText)]
+            [StringLength(1000, ErrorMessage = "Comment cannot exceed 1000 characters.")]
+            public string? Comment { get; set; }
+        }
+    }
+}

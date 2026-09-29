@@ -1,0 +1,193 @@
+@page "{id:int}"
+@model ReservationSystem.Pages.Admin.ClassDetailModel
+@{
+    ViewData["Title"] = $"Class Detail - {Model.ClassDetail?.Name}";
+    
+}
+
+<div class="container mt-4">
+    @if (Model.ClassDetail != null)
+    {
+        
+        <div class="d-flex flex-wrap justify-content-between align-items-center mt-4 mb-3">
+            <h2 class="mb-0"><i class="fas fa-chalkboard-teacher me-2"></i>Class Detail: <span class="text-primary">@Model.ClassDetail.Name</span></h2>
+           
+        </div>
+
+        @if (Model.FeedbackCount > 0)
+        {
+            <p class="lead">
+                <i class="fas fa-star text-warning me-1"></i>
+                <strong>Average Rating:</strong>
+                <span class="fw-bold mx-1">@Model.AverageRating.ToString("0.0") / 5</span>
+                <small class="text-muted">(@Model.FeedbackCount feedback@(Model.FeedbackCount == 1 ? "" : "s"))</small>
+            </p>
+        }
+        else
+        {
+            <p class="text-muted lead"><em>No feedback available for this class yet.</em></p>
+        }
+        <hr class="mb-4"/>
+
+      
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+                <h4 class="mb-0"><i class="fas fa-calendar-check me-2"></i>Approved Reservations Calendar for @Model.ClassDetail.Name</h4>
+            </div>
+            <div class="card-body">
+                <div id='classDetailCalendar' style="max-width: 900px; margin: auto;"></div>
+            </div>
+        </div>
+
+   
+
+        
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h4 class="mb-0"><i class="fas fa-comments me-2"></i>Feedback Submitted for this Class</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.Feedbacks.Any())
+                {
+                    @foreach (var feedback in Model.Feedbacks)
+                    {
+                        <div class="card mb-3 shadow-sm"> 
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="fw-bold">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <i class="fas fa-star @(i <= feedback.Rating ? "text-warning" : "text-muted")"></i> @* text-warning daha iyi durur *@
+                                            }
+                                        </span>
+                                        <span class="fw-bold ms-1">@feedback.Rating / 5</span>
+                                        <small class="text-muted ms-2">
+                                            by
+                                            @if(feedback.User != null)
+                                            {
+                                                @feedback.User.FullName
+                                            }
+                                            else if (!string.IsNullOrEmpty(feedback.SubmitterFullName))
+                                            {
+                                                @feedback.SubmitterFullName <span class="fst-italic">(Guest)</span>
+                                            }
+                                            else
+                                            {
+                                                @:Anonymous
+                                            }
+                                        </small>
+                                    </div>
+                                    <small class="text-muted">@feedback.FeedbackDate.ToString("dd MMM yyyy, HH:mm")</small>
+                                </div>
+                                @if (!string.IsNullOrEmpty(feedback.Comment))
+                                {
+                                    <p class="card-text mb-0 fst-italic">"@feedback.Comment"</p>
+                                }
+                                else
+                                {
+                                    <p class="card-text mb-0 text-muted"><em>(No comment provided)</em></p>
+                                }
+                                
+                                <small class="d-block text-muted mt-2">
+                                    Feedback for session: @feedback.SpecificDate.ToString("dd MMM yyyy") - @feedback.SpecificTimeSlot
+                                </small>
+
+                                @if (feedback.Reservation != null)
+                                {
+                                    <small class="d-block text-muted">
+                                        (Linked to Reservation: @feedback.Reservation.Date.ToString("dd MMM yyyy") - @feedback.Reservation.TimeSlot
+                                        @if (feedback.Reservation.Instructor != null)
+                                        {
+                                            @:, Instructor: @feedback.Reservation.Instructor.FullName
+                                        })
+                                    </small>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted"><em>No feedback has been submitted for this class yet.</em></p>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger mt-4">Class details could not be loaded. Please ensure the Class ID is correct or try again later.</div>
+    }
+</div>
+
+@section Scripts {
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+           
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, { html: true });
+            });
+
+            var calendarEl = document.getElementById('classDetailCalendar');
+            
+            if (calendarEl && @(Model.ClassDetail?.Id.ToString() ?? "null") !== null) {
+                var classId = @Model.ClassDetail.Id; 
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    themeSystem: 'bootstrap5',
+                    initialView: 'timeGridWeek', 
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    slotMinTime: "10:00:00",
+                    slotMaxTime: "18:00:00",
+                    slotDuration: "01:00:00",
+                    allDaySlot: false,
+                    nowIndicator: true,
+                    height: 'auto', 
+                    // contentHeight: 500,
+                    handleWindowResize: true,
+                    events: {
+                        url: `/admin/ClassDetail/${classId}?handler=CalendarData`, 
+                        failure: function(error) {
+                            console.error("Error fetching calendar data for class detail:", error);
+                            if (calendarEl) { 
+                                calendarEl.innerHTML = '<div class="alert alert-danger p-3">Could not load calendar reservations for this class. Please check console for errors.</div>';
+                            }
+                        }
+                    },
+                    eventDidMount: function(info) {
+                        if (info.event.extendedProps) {
+                            var props = info.event.extendedProps;
+                            var tooltipContent = `Instructor: ${props.instructor || 'N/A'}\nTime: ${props.timeSlot || 'N/A'}\nStatus: ${props.status || 'N/A'}`;
+                            
+                            var tooltipInstance = bootstrap.Tooltip.getInstance(info.el);
+                            if (tooltipInstance) {
+                                tooltipInstance.setContent({ '.tooltip-inner': tooltipContent.replace(/\n/g, '<br>') });
+                            } else {
+                                new bootstrap.Tooltip(info.el, { 
+                                    title: tooltipContent.replace(/\n/g, '<br>'), 
+                                    html: true, 
+                                    placement: 'top', 
+                                    trigger: 'hover', 
+                                    container: 'body' 
+                                });
+                            }
+                        }
+                    },
+                    noEventsContent: {
+                        html: '<div class="text-center p-3 text-muted"><i>No approved reservations for this class in the current view.</i></div>'
+                    }
+                });
+                calendar.render();
+            } else if (document.getElementById('classDetailCalendar')) { // calendarEl varsa ama ClassDetail null ise testim
+                 calendarEl.innerHTML = '<div class="alert alert-warning">Class ID not found or ClassDetail is null, cannot load calendar.</div>';
+            }
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} // Eğer bu sayfada form validasyonu yoksa gereksiz
+}

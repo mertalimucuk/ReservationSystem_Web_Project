@@ -1,0 +1,110 @@
+@page
+@model ReservationSystem.Pages.Admin.ClassListModel
+@{
+    ViewData["Title"] = "Class List";
+}
+
+<div class="container-fluid mt-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0"><i class="fas fa-chalkboard me-2"></i>@ViewData["Title"]</h2>
+        <a asp-page="/Admin/AddClass" class="btn btn-success">
+            <i class="fas fa-plus-circle me-2"></i>Add New Class
+        </a>
+    </div>
+
+    
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["SuccessMessage"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["ErrorMessage"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+ 
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0"><i class="fas fa-list-ul me-2"></i>Available Classes</h5>
+        </div>
+        <div class="card-body p-0">
+            @if (Model.ClassesWithRatings != null && Model.ClassesWithRatings.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" style="width: 25%;">Class Name</th>
+                                <th scope="col" style="width: 40%;">Description</th> 
+                                <th scope="col" class="text-center" style="width: 20%;">Avg. Rating (F.C.)</th> 
+                                <th scope="col" class="text-center" style="width: 15%;">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ClassesWithRatings)
+                            {
+                                <tr>
+                                    <td><strong>@Html.DisplayFor(modelItem => item.ClassName)</strong></td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.Description))
+                                        {
+                                            @(item.Description.Length > 75 ? item.Description.Substring(0, 75) + "..." : item.Description)
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted fst-italic">No description</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        @if (item.FeedbackCount > 0)
+                                        {
+                                            <span class="badge
+                                                @(item.AverageRating >= 4.0 ? "text-bg-success" :
+                                                  item.AverageRating >= 3.0 ? "text-bg-primary" :
+                                                  item.AverageRating >= 2.0 ? "text-bg-warning" : "text-bg-danger") rounded-pill"
+                                                  title="@item.FeedbackCount feedback(s)">
+                                                @item.AverageRating.ToString("0.0") <i class="fas fa-star fa-xs"></i> (@item.FeedbackCount)
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge text-bg-secondary rounded-pill">No Rating</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a asp-page="/Admin/ClassDetail" asp-route-id="@item.ClassId" class="btn btn-sm btn-info" title="View Class Details">
+                                            <i class="fas fa-eye me-1"></i>View
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info m-3 text-center mb-0">
+                    <i class="fas fa-info-circle me-2"></i>No classes found in the system. <a asp-page="/Admin/AddClass" class="alert-link">You can add a new class.</a>
+                </div>
+            }
+        </div>
+        @if (Model.ClassesWithRatings != null && Model.ClassesWithRatings.Any())
+        {
+            <div class="card-footer text-muted bg-light">
+                Total @Model.ClassesWithRatings.Count() class(es) listed.
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @* Bu sayfa için özel bir script gerekmiyor bu bölüm boş kalabilir veya silinebilir.*@
+}

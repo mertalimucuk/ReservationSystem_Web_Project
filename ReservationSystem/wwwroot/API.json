@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "starry-trilogy-459614-j7",
+  "private_key_id": "a8d0281dbebf75b1f362288c114eb1bfb8604d3e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDI/wgnqWkvKM04\nQq+IBkme930BGKzjrRL76uOMlJvYVCIYHMXJxbBxMFE9X0zFmmQ4bkeX8OyeSYz3\n0Ygxbvy3bzfpsNsHh4sBQJkoB0PhmCXfo94z7r5P6UcVFVDPqwmDZKgJcKMl6l9y\n3nd0po4ozcT3ll91fyY+TIqlcr+IvS1eTmxfs3D8/h9tuaCqu4A8/K0RIdEtQJLn\n9pkLSRVkKHGg333Bzb3Sq+5dAoTfdYmA/OSa7eChwE+Ct9SxFjPRU6hEzVDpONDl\n545e3z21526LkPYhjRF3S1W612WQHK6KfPiKjrgw1ib0BV0p7/U6x56l8V6reb+C\n/FOKZqeHAgMBAAECggEAFhs2omYXk4BBUfbDp4pJfpppvT0hhsj6VYq4DDYsDdbz\nCQPhHRgJF+nghYd9wh4A99PpO+TboW0le/wnpog2c1ZgJ+uzq1hVCYY5UhW6eY1q\nXPaA8eVIOTHHB6KYiL6fBTyE3sTsrLbiWJfvO302FXbMOw7m4N1jL2bruNauCjPS\na8stcXvS32GSCDpsMaHsEkBF3S7JrVJyI2OTXVR8VKyi+W7v80Lc9oTd1S9dHjw4\nlaJsK0cW/v/Vw+5PmePICSAvSIyOUyQESB3SMpgPEMY88Xaa/N1m9qGv9fSqy6Cp\nxfIxpU+bBEXNywWhv5VxH8roLrlmJMZ/2BBNzeGLgQKBgQDjUQe66prYePIEDLDG\nILZqeIlZPBrDsLHQYds7tJmKP3HoDf7ZlK8jcL+A+0a+0HJbj0zIbBiScUmMu6sY\nHL0arZGXSZX8zNGjDi9RnnRGIoGEI2C71nC8x50M7I66PuqFkOOm3eR2JEse8piZ\naiJQOln7hK0w3LD4ymGhCCQLaQKBgQDiW8fthvOBGnpMeCzH7T9puKWdOkvaMomq\nKmoczylgMuKW/xAKqyw7t/MXgITa4qQJyzlHvH9q9EUnObFn5ujMiOZrl6J8LxKH\newTesLXrC2Vtr2DwlK+oXGhwT/dht6TBmf2hiECM69bR/eTIHCyEtY8qUTpYfe1D\nye5Oj1ptbwKBgAEVCaxiIYqWSNCsHstSrIulN0ItfxMfbDlJvflyyqhV1Pz91BDF\nHHBWwRKkH5oY8/JrpDnwCc3orCj3W8EpodzWprLJruUdNIJKNv90eak70NIIORWr\n162OZbkCB0vrsMIiBnNs6wGE+raTARb54l/vZy5DW2+4HT+R9xUFLObBAoGAUS1X\nGsDt7NvhBjGG5cAYoMJ+ak9wynSbWDJT0bcdgIlfJ4WbbCgM+fGzNTd67cCf0X9X\nMHnSPDoT3sha7gcqb8ec0vMTa3O6MmoUygQXiY6Rtm9R1ZWNFVTmg3i6IAorBN9D\nzT0+4QrnBHIILRelg4ZVLHjq8rdecpQlaXkRlfMCgYEAg8z10VhLT2vzeYrLfygk\ncHxO6zEXbwY5hh1uHLkhAEyUjmJ6w66liHJhsx9AmUtizLGifWs+ySXZ+g8XpDIA\nVD+4hrkYeG9367RfSihGT0gCZmfDmUHerXY5YizNXYBzHEGrbFc9SeDb+o9S5tnh\nGoOLnCKpb6Rjic8xRkxm+Mo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "public-holiday-checker@starry-trilogy-459614-j7.iam.gserviceaccount.com",
+  "client_id": "117975325941848425691",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/public-holiday-checker%40starry-trilogy-459614-j7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -1,0 +1,370 @@
+/* wwwroot/css/site.css */
+
+/* ---------------------------------------------------- */
+/* GENEL AYARLAR VE FONT TANIMLAMASI
+/* Litera kendi fontlarını ve temel renklerini getirir.
+/* Biz sadece kendi istediğimiz fontu (Inter) burada tutuyoruz.
+/* Litera'nın açık tema renklerini genellikle kullanacağız.
+/* ---------------------------------------------------- */
+:root {
+  /* Kendi özel fontumuzu tanımlıyoruz ve Bootstrap'e (dolayısıyla Litera'ya) bunu kullanmasını söylüyoruz */
+  --font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-body-font-family: var(--font-family-sans-serif);
+
+  /* Litera zaten --bs-body-bg ve --bs-body-color gibi temel değişkenleri ayarlar.
+     Eğer Litera'nın varsayılan açık tema arkaplanından/metin renginden MEMNUN DEĞİLSEN,
+     aşağıdaki iki satırı aktif ederek kendi özel renklerini kullanabilirsin: */
+  /* --bs-body-bg: #f8f9fa; */ /* Örnek: Bootstrap'in light rengi */
+  /* --bs-body-color: #212529; */ /* Koyu metin */
+
+  /* Karanlık mod için temel özel değişkenlerimiz */
+  --custom-dark-bg: #1a1a1a; /* Biraz daha koyu bir arkaplan */
+  --custom-dark-text: #e0e0e0; /* Biraz daha yumuşak bir beyaz */
+  --custom-dark-border: #444444; /* Daha belirgin bir border */
+  --custom-dark-card-bg: #2c2c2c; /* Kartlar için */
+  --custom-dark-navbar-bg: #222222; /* Navbar için */
+  --custom-dark-navbar-color: #f0f0f0; /* Navbar metin rengi */
+  --custom-dark-footer-bg: #222222; /* Footer için */
+  --custom-dark-table-head-bg: #383838; /* Tablo başlığı */
+
+  /* Litera'nın --bs-primary-rgb değişkeni açık tema içindir.
+     Karanlık modda FullCalendar "today" için farklı bir RGB gerekebilir.
+     Aşağıda [data-bs-theme="dark"] içinde bunu ele alacağız. */
+}
+
+body {
+  font-family: var(--bs-body-font-family);
+  line-height: 1.65;
+  padding-top: 70px; /* fixed-top navbar için */
+  margin-bottom: 0;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* background-color ve color Litera veya [data-bs-theme="dark"] tarafından yönetilecek */
+}
+
+.main-content-area {
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* KARANLIK MOD STİLLERİ
+/* ---------------------------------------------------- */
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--custom-dark-bg);
+  --bs-body-color: var(--custom-dark-text);
+  --bs-border-color: var(--custom-dark-border);
+  --bs-heading-color: var(--custom-dark-text);
+
+  --bs-link-color: #90caff; /* Daha canlı bir mavi */
+  --bs-link-hover-color: #b3daff;
+  --bs-link-color-rgb: 144, 202, 255;
+  --bs-link-hover-color-rgb: 179, 218, 255;
+
+  /* FullCalendar'ın "today" arkaplanı için karanlık moda uygun bir primary RGB */
+  /* Litera'nın --bs-primary renginin RGB karşılığını buraya girmek en iyisi olur,
+     veya link rengimizin RGB'sini kullanabiliriz. Şimdilik link rengini kullanalım. */
+  --bs-primary-rgb: var(--bs-link-color-rgb);
+
+  .card {
+    background-color: var(--custom-dark-card-bg);
+    border-color: var(--bs-border-color);
+  }
+
+  .card-header {
+    background-color: #333333; /* Biraz daha açık kart başlığı */
+    border-bottom-color: var(--bs-border-color);
+    color: var(--bs-body-color); /* Başlık metninin görünür olması için */
+  }
+  .card-header.bg-light {
+    /* Eğer card-header'a bg-light verilmişse karanlık modda onu da ezelim */
+    background-color: #333333 !important;
+  }
+
+  .table {
+    --bs-table-bg: var(--custom-dark-card-bg);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.035);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.055);
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-border-color: var(--bs-border-color);
+  }
+
+  .table > thead {
+    background-color: var(--custom-dark-table-head-bg);
+    color: var(--bs-body-color); /* Başlık metninin görünür olması için */
+  }
+  .table.table-light > thead, /* Eğer tabloya table-light verilmişse karanlık modda başlığı ezelim */
+  thead.table-light {
+    background-color: var(--custom-dark-table-head-bg) !important;
+    color: var(--bs-body-color) !important;
+  }
+
+  .table-dark th, /* Bootstrap'in .table-dark sınıfı için ince ayar */
+  .table-dark td,
+  .table-dark thead th {
+    border-color: #555555;
+  }
+
+  .dropdown-menu {
+    background-color: var(--custom-dark-card-bg);
+    border-color: var(--bs-border-color);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5); /* Gölgeyi biraz daha belirgin yap */
+  }
+
+  .dropdown-item {
+    color: var(--bs-body-color);
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    color: #ffffff;
+    background-color: rgba(var(--bs-link-color-rgb), 0.3);
+  }
+
+  .form-control,
+  .form-select {
+    background-color: #2f2f2f; /* Biraz daha açık form arkaplanı */
+    color: var(--bs-body-color);
+    border-color: var(--bs-border-color);
+  }
+  .form-control::placeholder {
+    /* Placeholder metin rengi */
+    color: #888888;
+  }
+  .form-select {
+    /* Select için metin rengi */
+    color: var(--bs-body-color);
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    background-color: #2f2f2f;
+    border-color: var(--bs-link-color);
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-link-color-rgb), 0.35);
+  }
+
+  .input-group-text {
+    background-color: #3a3a3a;
+    border-color: var(--bs-border-color);
+    color: var(--bs-body-color);
+  }
+
+  .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+  }
+
+  .modal-content {
+    /* Modal içeriği için karanlık mod */
+    background-color: var(--custom-dark-card-bg);
+    border-color: var(--bs-border-color);
+  }
+  .modal-header {
+    border-bottom-color: var(--bs-border-color);
+  }
+  .modal-header.bg-info {
+    /* InstructorPanel'deki modal başlığı bg-info idi */
+    background-color: #0d6efd !important; /* Bootstrap primary blue gibi - veya link rengimiz */
+    color: white !important;
+  }
+  .modal-header.bg-info .modal-title {
+    color: white !important;
+  }
+
+  .modal-footer {
+    border-top-color: var(--bs-border-color);
+  }
+
+  .contact-form-container, /* Login sayfasındaki container'lar */
+  .feedback-form-container {
+    background-color: var(--custom-dark-card-bg);
+    border: 1px solid var(--custom-dark-border);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
+  }
+
+  .nav-pills .nav-link {
+    /* Genel nav-pills linkleri */
+    color: var(--bs-body-color);
+  }
+  .nav-pills .nav-link.active {
+    /* background-color: var(--bs-primary); Litera bunu yönetir, gerekirse override et */
+  }
+
+  /* FullCalendar Dark Mode */
+  .fc {
+    --fc-border-color: var(--bs-border-color);
+    --fc-daygrid-day-bg-color: var(--custom-dark-card-bg);
+    --fc-list-event-hover-bg-color: #2c3034;
+  }
+
+  .fc .fc-col-header-cell-cushion,
+  .fc .fc-daygrid-day-number,
+  .fc .fc-list-day-text,
+  .fc .fc-list-day-side-text,
+  .fc-list-event-title a {
+    color: var(--bs-body-color);
+  }
+
+  .fc .fc-day-today {
+    background-color: rgba(
+      var(--bs-primary-rgb),
+      0.25
+    ) !important; /* --bs-primary-rgb'yi yukarıda tanımladık */
+  }
+
+  /* Sağ Üstteki Navbar Login Linki İçin Kırmızı Renk */
+  #navbarLoginLink {
+    color: #e53935 !important;
+  }
+  #navbarLoginLink:hover {
+    color: #c62828 !important;
+  }
+} /* [data-bs-theme="dark"] bloğunun sonu */
+
+/* ---------------------------------------------------- */
+/* NAVBAR STİLLERİ
+/* _Layout.cshtml'de <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm fixed-top">
+/* kullanıldığı için .navbar-custom'a olan ihtiyaç azaldı.
+/* Bu bölümü sadeleştirebilir veya Litera'nın varsayılanlarını kullanabiliriz.
+/* Şimdilik özel durumlar için tutalım.
+/* ---------------------------------------------------- */
+.navbar-custom {
+  /* Bu sınıf _Layout.cshtml'deki nav'da artık yok, ama başka yerde kullanılıyorsa kalsın */
+  /* background-color: var(--custom-light-navbar-bg, #ffffff); Artık bg-light yönetiyor */
+  /* border-bottom: 1px solid var(--custom-light-border, #dee2e6); Artık border-bottom yönetiyor */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+[data-bs-theme="dark"] .navbar.bg-light {
+  /* Açık tema navbar'ı karanlık modda ezelim */
+  background-color: var(--custom-dark-navbar-bg) !important;
+  border-bottom: 1px solid var(--custom-dark-border) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-light .navbar-brand,
+[data-bs-theme="dark"] .navbar.bg-light .nav-link,
+[data-bs-theme="dark"] .navbar.bg-light .navbar-text {
+  color: var(--custom-dark-navbar-color) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-light .nav-link.active {
+  color: var(--bs-link-color) !important;
+}
+
+[data-bs-theme="dark"] .navbar.bg-light .nav-link:hover,
+[data-bs-theme="dark"] .navbar.bg-light .nav-link:focus {
+  color: var(--bs-link-hover-color) !important;
+}
+
+/* Açık temada .navbar-light altındaki linklerin stillerini Litera yönetir.
+   Sadece aktif link için font-weight'i koruyalım. */
+.navbar-light .nav-link.active {
+  /* color: var(--bs-primary) !important; Litera bunu yönetir */
+  font-weight: 600 !important; /* Font weight'i zorla */
+}
+
+/* Navbar toggler ikonları (Bunlar iyi, korunmalı) */
+[data-bs-theme="dark"] .navbar-toggler-icon {
+  /* .navbar.bg-light ile birleştirilebilir */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28228, 230, 235, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+/* .navbar-light .navbar-toggler-icon Litera tarafından yönetilir. */
+
+/* Tema değiştirme butonu */
+.theme-toggle-btn {
+  /* Açık temada rengini Litera'nın buton veya metin renklerinden almalı.
+     Eğer _Layout.cshtml'de btn-outline-secondary gibi bir sınıf varsa, bu kurallara gerek yok. */
+  /* color: var(--bs-secondary-color); */
+  /* border-color: var(--bs-secondary-color); */
+}
+[data-bs-theme="dark"] .theme-toggle-btn {
+  color: var(--custom-dark-navbar-color) !important; /* Kendi rengimiz */
+  border-color: var(--custom-dark-navbar-color) !important; /* Kendi rengimiz */
+}
+.theme-toggle-btn:hover {
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------- */
+/* FOOTER STİLLERİ
+/* ---------------------------------------------------- */
+.footer {
+  font-size: 0.9em;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex-shrink: 0;
+  /* Açık tema için background-color, color, border-top Litera'dan gelecek */
+}
+
+[data-bs-theme="dark"] .footer {
+  background-color: var(--custom-dark-footer-bg);
+  color: var(--custom-dark-text);
+  border-top: 1px solid var(--custom-dark-border);
+}
+
+/* ---------------------------------------------------- */
+/* GENEL İYİLEŞTİRMELER VE ÖZEL SAYFA STİLLERİ
+/* ---------------------------------------------------- */
+
+.btn i.me-1,
+.btn i.me-2 {
+  margin-right: 0.35rem !important;
+}
+
+.alert i.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+.contact-form-container, /* Login sayfasındaki container'lar */
+.feedback-form-container {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  /* Açık tema için background-color, border, box-shadow Litera'nın .card stilinden gelecek.
+     Karanlık mod için yukarıda zaten tanımlandı. */
+}
+
+.contact-form-container h4, /* Login'deki Contact Us başlığı */
+.feedback-form-container h5 {
+  /* InstructorPanel'deki form başlıkları */
+  font-weight: 500;
+  /* color zaten --bs-heading-color olacak */
+}
+
+/* Contact Us Tabs - İKON RENKLERİ İÇİN SON AYARLAR (DOSYANIN EN SONUNDA) */
+
+/* AÇIK TEMA - Seçili olmayan tab ikonları */
+.contact-tabs .nav-link:not(.active) .fas {
+  color: var(
+    --bs-nav-link-color,
+    #6c757d
+  ) !important; /* Bootstrap'in nav-link rengini veya ikincil rengini al */
+  opacity: 0.65 !important;
+}
+
+/* AÇIK TEMA - Seçili olan tab ikonu */
+.contact-tabs .nav-link.active .fas {
+  color: var(
+    --bs-nav-tabs-link-active-color,
+    var(--bs-primary)
+  ) !important; /* Bootstrap'in aktif tab rengini veya primary rengini al */
+  opacity: 1 !important;
+}
+
+/* KARANLIK TEMA - Seçili olmayan tab ikonları */
+[data-bs-theme="dark"] .contact-tabs .nav-link:not(.active) .fas {
+  color: var(--bs-body-color) !important; /* Karanlık modun ana metin rengi */
+  opacity: 0.65 !important;
+}
+
+/* KARANLIK TEMA - Seçili olan tab ikonu */
+[data-bs-theme="dark"] .contact-tabs .nav-link.active .fas {
+  color: var(
+    --bs-link-color
+  ) !important; /* Karanlık mod için tanımladığımız link rengi */
+  opacity: 1 !important;
+}
